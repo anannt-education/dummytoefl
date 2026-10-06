@@ -32,7 +32,7 @@ window.SPEAKING_TEST_1 = {
       "type": "listen_and_repeat",
       "partIndex": 0,
       "sentence": "Welcome to the campus library.",
-      "audioSrc": "/assets/audio/speaking/test-1/s1.mp3",
+      "audioSrc": "/assets/audio/speaking/test-1/s1.mp3?v=20261006",
       "recordingTime": 8,
       "scoringCriteria": {
         "1": "Unintelligible or no response.",
@@ -48,7 +48,7 @@ window.SPEAKING_TEST_1 = {
       "type": "listen_and_repeat",
       "partIndex": 1,
       "sentence": "Please keep your phone on silent.",
-      "audioSrc": "/assets/audio/speaking/test-1/s2.mp3",
+      "audioSrc": "/assets/audio/speaking/test-1/s2.mp3?v=20261006",
       "recordingTime": 8,
       "scoringCriteria": {
         "1": "Unintelligible or no response.",
@@ -64,7 +64,7 @@ window.SPEAKING_TEST_1 = {
       "type": "listen_and_repeat",
       "partIndex": 2,
       "sentence": "Books can be borrowed for up to three weeks.",
-      "audioSrc": "/assets/audio/speaking/test-1/s3.mp3",
+      "audioSrc": "/assets/audio/speaking/test-1/s3.mp3?v=20261006",
       "recordingTime": 10,
       "scoringCriteria": {
         "1": "Unintelligible or no response.",
@@ -80,7 +80,7 @@ window.SPEAKING_TEST_1 = {
       "type": "listen_and_repeat",
       "partIndex": 3,
       "sentence": "Study carrels are located on the quiet upper floor.",
-      "audioSrc": "/assets/audio/speaking/test-1/s4.mp3",
+      "audioSrc": "/assets/audio/speaking/test-1/s4.mp3?v=20261006",
       "recordingTime": 10,
       "scoringCriteria": {
         "1": "Unintelligible or no response.",
@@ -96,7 +96,7 @@ window.SPEAKING_TEST_1 = {
       "type": "listen_and_repeat",
       "partIndex": 4,
       "sentence": "The self-checkout machine accepts student cards and guest passes.",
-      "audioSrc": "/assets/audio/speaking/test-1/s5.mp3",
+      "audioSrc": "/assets/audio/speaking/test-1/s5.mp3?v=20261006",
       "recordingTime": 10,
       "scoringCriteria": {
         "1": "Unintelligible or no response.",
@@ -112,7 +112,7 @@ window.SPEAKING_TEST_1 = {
       "type": "listen_and_repeat",
       "partIndex": 5,
       "sentence": "If a book is already checked out, please reserve it at the front desk.",
-      "audioSrc": "/assets/audio/speaking/test-1/s6.mp3",
+      "audioSrc": "/assets/audio/speaking/test-1/s6.mp3?v=20261006",
       "recordingTime": 12,
       "scoringCriteria": {
         "1": "Unintelligible or no response.",
@@ -128,7 +128,7 @@ window.SPEAKING_TEST_1 = {
       "type": "listen_and_repeat",
       "partIndex": 6,
       "sentence": "Food and drinks are not permitted near the bookshelves, though water bottles may be carried.",
-      "audioSrc": "/assets/audio/speaking/test-1/s7.mp3",
+      "audioSrc": "/assets/audio/speaking/test-1/s7.mp3?v=20261006",
       "recordingTime": 12,
       "scoringCriteria": {
         "1": "Unintelligible or no response.",

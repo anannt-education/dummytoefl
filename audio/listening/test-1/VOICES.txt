@@ -1,0 +1,6 @@
+Practice Test 1 voices, 6 October 2026.
+Choose-response and announcements rotate across Aria, Jenny, Michelle, Emma, Ava, Guy, Eric, Christopher, Roger, and Steffan.
+Talks: Guy, Jenny, Michelle, Christopher.
+Conversations use a different woman and man pair per conversation.
+Listen and Repeat model: Michelle, slightly slower.
+Encode: 24 kHz source at 96 kbps, shipped as 44.1 kHz 160 kbps mono so the old 48 kbps lowpass is not reused.

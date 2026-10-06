@@ -15,14 +15,14 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
     {
       id: 'module-1',
       title: 'Module 1',
-      introAudio: '/audio/listening/test-1/m1-intro.mp3',
+      introAudio: '/audio/listening/test-1/m1-intro.mp3?v=20261006',
 
       // ─── TASK 1: Listen and Choose a Response (Q1–Q12) ─────────────────
       chooseResponse: [
         {
           id: 'lt1-m1-cr1',
           type: 'choose_response',
-          audio: '/audio/listening/test-1/m1-cr01.mp3',
+          audio: '/audio/listening/test-1/m1-cr01.mp3?v=20261006',
           image: '/img/listening/stock_modal/female-1.webp',
           speakerGender: 'female',
           stem: 'Choose the best response.',
@@ -39,7 +39,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
         {
           id: 'lt1-m1-cr2',
           type: 'choose_response',
-          audio: '/audio/listening/test-1/m1-cr02.mp3',
+          audio: '/audio/listening/test-1/m1-cr02.mp3?v=20261006',
           image: '/img/listening/stock_modal/male-1.webp',
           speakerGender: 'male',
           stem: 'Choose the best response.',
@@ -56,7 +56,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
         {
           id: 'lt1-m1-cr3',
           type: 'choose_response',
-          audio: '/audio/listening/test-1/m1-cr03.mp3',
+          audio: '/audio/listening/test-1/m1-cr03.mp3?v=20261006',
           image: '/img/listening/stock_modal/female-2.webp',
           speakerGender: 'female',
           stem: 'Choose the best response.',
@@ -73,7 +73,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
         {
           id: 'lt1-m1-cr4',
           type: 'choose_response',
-          audio: '/audio/listening/test-1/m1-cr04.mp3',
+          audio: '/audio/listening/test-1/m1-cr04.mp3?v=20261006',
           image: '/img/listening/stock_modal/male-2.webp',
           speakerGender: 'male',
           stem: 'Choose the best response.',
@@ -90,7 +90,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
         {
           id: 'lt1-m1-cr5',
           type: 'choose_response',
-          audio: '/audio/listening/test-1/m1-cr05.mp3',
+          audio: '/audio/listening/test-1/m1-cr05.mp3?v=20261006',
           image: '/img/listening/stock_modal/female-3.webp',
           speakerGender: 'female',
           stem: 'Choose the best response.',
@@ -107,7 +107,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
         {
           id: 'lt1-m1-cr6',
           type: 'choose_response',
-          audio: '/audio/listening/test-1/m1-cr06.mp3',
+          audio: '/audio/listening/test-1/m1-cr06.mp3?v=20261006',
           image: '/img/listening/stock_modal/male-3.webp',
           speakerGender: 'male',
           stem: 'Choose the best response.',
@@ -124,7 +124,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
         {
           id: 'lt1-m1-cr7',
           type: 'choose_response',
-          audio: '/audio/listening/test-1/m1-cr07.mp3',
+          audio: '/audio/listening/test-1/m1-cr07.mp3?v=20261006',
           image: '/img/listening/stock_modal/female-4.webp',
           speakerGender: 'female',
           stem: 'Choose the best response.',
@@ -141,7 +141,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
         {
           id: 'lt1-m1-cr8',
           type: 'choose_response',
-          audio: '/audio/listening/test-1/m1-cr08.mp3',
+          audio: '/audio/listening/test-1/m1-cr08.mp3?v=20261006',
           image: '/img/listening/stock_modal/male-4.webp',
           speakerGender: 'male',
           stem: 'Choose the best response.',
@@ -158,7 +158,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
         {
           id: 'lt1-m1-cr9',
           type: 'choose_response',
-          audio: '/audio/listening/test-1/m1-cr09.mp3',
+          audio: '/audio/listening/test-1/m1-cr09.mp3?v=20261006',
           image: '/img/listening/stock_modal/female-5.webp',
           speakerGender: 'female',
           stem: 'Choose the best response.',
@@ -175,7 +175,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
         {
           id: 'lt1-m1-cr10',
           type: 'choose_response',
-          audio: '/audio/listening/test-1/m1-cr10.mp3',
+          audio: '/audio/listening/test-1/m1-cr10.mp3?v=20261006',
           image: '/img/listening/stock_modal/male-5.webp',
           speakerGender: 'male',
           stem: 'Choose the best response.',
@@ -196,7 +196,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
         {
           id: 'lt1-m1-conv1',
           title: 'Listen to a conversation.',
-          audio: '/audio/listening/test-1/m1-conv1.mp3',
+          audio: '/audio/listening/test-1/m1-conv1.mp3?v=20261006',
           image: '/img/listening/two_people/people-1.webp',
           transcript: 'Woman: I can\'t believe our trip is two weeks away. Have you booked the rental car yet?\nMan: Not yet. I compared prices last night. Some companies offer better weekend rates if you prepay.\nWoman: That\'s good to know. I\'ll cover the hotel if you handle the car.\nMan: Deal. I\'ll finalize it tonight and send you the confirmation.\nWoman: Thanks. Get unlimited mileage if you can, we\'re driving the coast.\nMan: Will do. And I\'ll double-check our flight times so we get to the rental place on time.\nWoman: Good idea. Our Denver connection is tight.\nMan: Right. It\'s all coming together nicely.',
           questions: [
@@ -229,7 +229,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
         {
           id: 'lt1-m1-conv2',
           title: 'Listen to a conversation.',
-          audio: '/audio/listening/test-1/m1-conv2.mp3',
+          audio: '/audio/listening/test-1/m1-conv2.mp3?v=20261006',
           image: '/img/listening/two_people/people-2.webp',
           transcript: 'Man: Did you see the email about the new campus dining options?\nWoman: Yeah! I\'m excited they\'re adding a Mediterranean food station. I\'ve wanted more variety.\nMan: Me too. But they\'re also removing the salad bar, and that\'s my go-to for lunch.\nWoman: Really? That\'s too bad. Maybe you should send feedback to the dining services office.\nMan: Good idea. There\'s a suggestion form on their website.\nWoman: There is. I used it last year about the coffee cart hours, and they changed them.\nMan: Really? Do they reply to everyone?\nWoman: Usually within a week. Do it soon, the changes start next month.',
           questions: [
@@ -262,7 +262,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
         {
           id: 'lt1-m1-conv3',
           title: 'Listen to a conversation.',
-          audio: '/audio/listening/test-1/m1-conv3.mp3',
+          audio: '/audio/listening/test-1/m1-conv3.mp3?v=20261006',
           image: '/img/listening/two_people/people-3.webp',
           transcript: 'Woman: I\'m really struggling with the research paper for Professor Adams\' class. Have you started yours yet?\nMan: I just picked my topic yesterday. I\'m writing about the effects of social media on attention spans.\nWoman: That sounds interesting. I can\'t even decide on a topic. There are too many options.\nMan: Why don\'t you go to the writing center? They helped me narrow down my ideas last semester.\nWoman: I didn\'t know they helped with that. I thought they only checked grammar.\nMan: No, they do a lot more. They can help with brainstorming, outlining, everything really.',
           questions: [
@@ -299,7 +299,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
         {
           id: 'lt1-m1-ann1',
           title: 'Listen to an announcement at a university event.',
-          audio: '/audio/listening/test-1/m1-ann1.mp3',
+          audio: '/audio/listening/test-1/m1-ann1.mp3?v=20261006',
           image: '/img/listening/announcement/female-1.webp',
           speakerGender: 'female',
           transcript: 'Good morning, students. The Financial Aid Office will host an information session this Friday at ten a.m. in Room 202 of the Student Services Building. Staff members will explain how to complete renewal applications and answer questions about scholarships and grants for next year. Students are encouraged to bring their laptops if they want help submitting forms online. Renewal applications are due March first, so this is the last session before that deadline. Seating is limited, so arrive early. Light refreshments will be provided.',
@@ -333,7 +333,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
         {
           id: 'lt1-m1-ann2',
           title: 'Listen to an announcement on campus.',
-          audio: '/audio/listening/test-1/m1-ann2.mp3',
+          audio: '/audio/listening/test-1/m1-ann2.mp3?v=20261006',
           image: '/img/listening/announcement/male-1.webp',
           speakerGender: 'male',
           transcript: 'Attention, all residents of Hamilton Hall. Due to scheduled maintenance on the building\'s heating system, hot water will be unavailable this Saturday from eight a.m. to two p.m. Cold water and electricity will not be affected. Anyone who needs a shower during those hours may use the locker rooms at the Recreation Center, which opens at seven. We apologize for the inconvenience and recommend that residents plan accordingly. If you have any questions, please contact the facilities office at extension four-one-five-zero. Thank you for your patience.',
@@ -367,7 +367,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
         {
           id: 'lt1-m1-ann3',
           title: 'Listen to an announcement at a university.',
-          audio: '/audio/listening/test-1/m1-ann3.mp3',
+          audio: '/audio/listening/test-1/m1-ann3.mp3?v=20261006',
           image: '/img/listening/announcement/female-2.webp',
           speakerGender: 'female',
           transcript: 'Hello, everyone. This is a reminder that the annual Campus Career Fair will take place next Wednesday from ten a.m. to three p.m. in the gymnasium. Over forty employers from various industries will be present, including technology, healthcare, and education. Students should bring copies of their resume and dress professionally. Walk-ins are welcome, but those who register in advance through the Career Services portal will receive priority access to employer booths. Registration closes Monday at midnight, and the portal link is in your student email.',
@@ -405,7 +405,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
         {
           id: 'lt1-m1-talk1',
           title: 'Listen to a talk in a psychology class.',
-          audio: '/audio/listening/test-1/m1-talk1.mp3',
+          audio: '/audio/listening/test-1/m1-talk1.mp3?v=20261006',
           image: '/img/listening/announcement/male-3.webp',
           speakerGender: 'male',
           transcript: 'Today I want to talk about the Zeigarnik Effect: what it is, where it came from, and why it matters for the way you work. The effect refers to our tendency to remember unfinished tasks more vividly than completed ones. It got its name in the 1920s. The psychologist Bluma Zeigarnik noticed something about the waiters in a cafe. They could recall unpaid orders with remarkable accuracy, but once a bill was settled, the order seemed to drop out of memory. Her explanation was that an incomplete task creates a mild state of psychological tension, and that tension keeps the task active in memory until closure is achieved. That is only an observation, though, so let\'s look at the laboratory evidence. In one experiment, participants were interrupted partway through a set of puzzles. Those interrupted remembered the details better than participants who worked straight through to a solution. Their minds appeared to hold the unresolved task open, as if still waiting for completion. Modern researchers connect this to goal-oriented cognition. While a goal remains incomplete, the brain maintains heightened focus on information related to that goal. So the effect explains a lot: replaying an unfinished conversation, feeling pulled back toward work you left half done. It also suggests practical strategies, such as breaking a large project into smaller segments that preserve motivation. Next, let\'s take a look at some popular apps and inventions that people use today to improve their focus and reduce the impact of the Zeigarnik Effect.',
@@ -463,7 +463,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
         {
           id: 'lt1-m1-talk2',
           title: 'Listen to a talk in a psychology class.',
-          audio: '/audio/listening/test-1/m1-talk2.mp3',
+          audio: '/audio/listening/test-1/m1-talk2.mp3?v=20261006',
           image: '/img/listening/announcement/female-1.webp',
           speakerGender: 'female',
           transcript: 'Today we will look at how memory works, and I want to keep it practical, because it affects how you study for this course. Scientists describe two main types of memory. Short-term memory holds a small amount of information for a few seconds. Think of a phone number you hear and then dial: you hold it just long enough to use it, and then it is gone. Long-term memory is different. It stores information for years, like the name of your first school or the street it was on. So how does information move from the first store into the second? Through repetition and meaningful connections. When you repeat a word and also tie it to something you already know, you are giving your brain more than one path back to it, and that is how a long-term memory gets built. This is why active study methods work better than simply rereading your notes. Quizzing yourself forces you to pull the information back out and to build those connections, while rereading only lets you recognize words you have already seen. In one classroom study, students who tested themselves on a passage remembered far more a week later than students who reread that passage several times. Sleep also plays a key role. During sleep, the brain organizes memories from the day, sorting and strengthening what you took in while you were awake. So the all-night session before an exam works against the very system you are trying to use.',
@@ -527,14 +527,14 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
     {
       id: 'module-2',
       title: 'Module 2',
-      introAudio: '/audio/listening/test-1/m2-intro.mp3',
+      introAudio: '/audio/listening/test-1/m2-intro.mp3?v=20261006',
 
       // ─── TASK 1: Listen and Choose a Response (Q1–Q7) ─────────────────
       chooseResponse: [
         {
           id: 'lt1-m2-cr1',
           type: 'choose_response',
-          audio: '/audio/listening/test-1/m2-cr01.mp3',
+          audio: '/audio/listening/test-1/m2-cr01.mp3?v=20261006',
           image: '/img/listening/stock_modal/male-2.webp',
           speakerGender: 'male',
           stem: 'Choose the best response.',
@@ -551,7 +551,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
         {
           id: 'lt1-m2-cr2',
           type: 'choose_response',
-          audio: '/audio/listening/test-1/m2-cr02.mp3',
+          audio: '/audio/listening/test-1/m2-cr02.mp3?v=20261006',
           image: '/img/listening/stock_modal/female-3.webp',
           speakerGender: 'female',
           stem: 'Choose the best response.',
@@ -568,7 +568,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
         {
           id: 'lt1-m2-cr3',
           type: 'choose_response',
-          audio: '/audio/listening/test-1/m2-cr03.mp3',
+          audio: '/audio/listening/test-1/m2-cr03.mp3?v=20261006',
           image: '/img/listening/stock_modal/male-4.webp',
           speakerGender: 'male',
           stem: 'Choose the best response.',
@@ -585,7 +585,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
         {
           id: 'lt1-m2-cr4',
           type: 'choose_response',
-          audio: '/audio/listening/test-1/m2-cr04.mp3',
+          audio: '/audio/listening/test-1/m2-cr04.mp3?v=20261006',
           image: '/img/listening/stock_modal/female-5.webp',
           speakerGender: 'female',
           stem: 'Choose the best response.',
@@ -602,7 +602,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
         {
           id: 'lt1-m2-cr5',
           type: 'choose_response',
-          audio: '/audio/listening/test-1/m2-cr05.mp3',
+          audio: '/audio/listening/test-1/m2-cr05.mp3?v=20261006',
           image: '/img/listening/stock_modal/male-6.webp',
           speakerGender: 'male',
           stem: 'Choose the best response.',
@@ -623,7 +623,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
         {
           id: 'lt1-m2-conv1',
           title: 'Listen to a conversation.',
-          audio: '/audio/listening/test-1/m2-conv1.mp3',
+          audio: '/audio/listening/test-1/m2-conv1.mp3?v=20261006',
           image: '/img/listening/two_people/people-4.webp',
           transcript: 'Man: I just found out that the photography exhibit in the Fine Arts Building is closing this weekend. Have you seen it yet?\nWoman: No, I haven\'t. Is it worth going?\nMan: Absolutely. The photos are all from students who traveled abroad last summer. Some of them are incredible.\nWoman: That does sound interesting. Is there an admission fee?\nMan: No, it\'s free with a student ID.\nWoman: Good. Do you know the hours?\nMan: I think it\'s open until five on Saturday. We could go together after lunch if you\'re free.\nWoman: That works for me. Let\'s meet at the student center at noon.',
           questions: [
@@ -656,7 +656,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
         {
           id: 'lt1-m2-conv2',
           title: 'Listen to a conversation.',
-          audio: '/audio/listening/test-1/m2-conv2.mp3',
+          audio: '/audio/listening/test-1/m2-conv2.mp3?v=20261006',
           image: '/img/listening/two_people/people-5.webp',
           transcript: 'Woman: Have you decided on your community service hours yet?\nMan: Not yet. I wanted to volunteer at the animal shelter, but the shifts conflict with my Tuesday labs.\nWoman: What about the tutoring program at the community center? They need people on Wednesday evenings.\nMan: That could work. I\'m good at math, and I\'m free Wednesdays after four.\nWoman: Perfect. It\'s two hours a week, six to eight, and they always need math tutors.\nMan: Even better. Any training required?\nWoman: Just a short orientation. I\'ll send you the sign-up link. The coordinator, Maria, is really organized.\nMan: Thanks, I\'ll fill it out tonight.',
           questions: [
@@ -693,7 +693,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
         {
           id: 'lt1-m2-ann1',
           title: 'Listen to an announcement at a university.',
-          audio: '/audio/listening/test-1/m2-ann1.mp3',
+          audio: '/audio/listening/test-1/m2-ann1.mp3?v=20261006',
           image: '/img/listening/announcement/female-3.webp',
           speakerGender: 'female',
           transcript: 'Good afternoon, everyone. I\'d like to remind you that the deadline to submit your application for the undergraduate research fellowship is this Monday at five p.m. Applications must include a two-page project proposal, a faculty recommendation letter, and your current transcript. You can submit everything electronically through the research portal on the university website. If you have questions about the application process, drop by the Office of Undergraduate Research in Whitman Hall, Room 118. We\'re open weekdays from nine to four.',
@@ -727,7 +727,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
         {
           id: 'lt1-m2-ann2',
           title: 'Listen to an announcement on campus.',
-          audio: '/audio/listening/test-1/m2-ann2.mp3',
+          audio: '/audio/listening/test-1/m2-ann2.mp3?v=20261006',
           image: '/img/listening/announcement/male-4.webp',
           speakerGender: 'male',
           transcript: 'Hey everyone, quick heads-up. The Student Government Association is organizing a campus clean-up day this Saturday starting at nine a.m. We\'ll meet in front of the student union, and supplies like gloves and trash bags will be provided. Volunteers who participate for at least two hours will receive a free T-shirt and a coupon for the campus cafe. No sign-up is needed, just show up. It\'s a great way to give back to the campus community and meet new people. Hope to see you there.',
@@ -765,7 +765,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
         {
           id: 'lt1-m2-talk1',
           title: 'Listen to a talk in an environmental science class.',
-          audio: '/audio/listening/test-1/m2-talk1.mp3',
+          audio: '/audio/listening/test-1/m2-talk1.mp3?v=20261006',
           image: '/img/listening/announcement/female-3.webp',
           speakerGender: 'female',
           transcript: 'One of the most surprising findings in recent ecology is the role a single predator can play in shaping an entire ecosystem. I want to walk you through the Yellowstone case and then give you the term ecologists use for it. Some background. Wolves were hunted out of Yellowstone National Park by the 1920s, and for roughly seventy years the park had none. When a small number were brought back in 1995, the aim was straightforward. Scientists expected the wolves to control the elk population, which had grown large in their absence. What they did not anticipate was the cascade of effects that would follow. Elk numbers fell, but just as importantly, the surviving elk became more cautious about where they grazed. They stopped lingering in the open valleys along the streams, where a wolf could approach unseen. Willows and aspens in those streamside areas, browsed down for decades, began to recover. Beavers returned to those streams to use the new vegetation, and the dams they built created wetlands that supported birds, fish, and amphibians. Even the courses of some rivers shifted, because stable streamside vegetation slowed erosion and held the banks. This phenomenon, in which a single predator at the top of the food web influences populations and even the physical landscape several levels below it, is now called a trophic cascade. Ecologists still argue over how much weight to give each link in that chain, but the central lesson holds and it changed how the field thinks about predators.',
@@ -826,12 +826,12 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
   module2Easy: {
     id: 'module-2-easy',
     title: 'Module 2 (Easy path)',
-    introAudio: '/audio/listening/test-1/m2-intro.mp3',
+    introAudio: '/audio/listening/test-1/m2-intro.mp3?v=20261006',
     chooseResponse: [
           {
             id: 'lt1-m2e-cr1',
             type: 'choose_response',
-            audio: '/audio/listening/test-1/m2e-cr01.mp3',
+            audio: '/audio/listening/test-1/m2e-cr01.mp3?v=20261006',
             image: '/img/listening/stock_modal/female-1.webp',
             speakerGender: 'female',
             stem: 'Choose the best response.',
@@ -848,7 +848,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
           {
             id: 'lt1-m2e-cr2',
             type: 'choose_response',
-            audio: '/audio/listening/test-1/m2e-cr02.mp3',
+            audio: '/audio/listening/test-1/m2e-cr02.mp3?v=20261006',
             image: '/img/listening/stock_modal/male-1.webp',
             speakerGender: 'male',
             stem: 'Choose the best response.',
@@ -865,7 +865,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
           {
             id: 'lt1-m2e-cr3',
             type: 'choose_response',
-            audio: '/audio/listening/test-1/m2e-cr03.mp3',
+            audio: '/audio/listening/test-1/m2e-cr03.mp3?v=20261006',
             image: '/img/listening/stock_modal/female-1.webp',
             speakerGender: 'female',
             stem: 'Choose the best response.',
@@ -882,7 +882,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
           {
             id: 'lt1-m2e-cr4',
             type: 'choose_response',
-            audio: '/audio/listening/test-1/m2e-cr04.mp3',
+            audio: '/audio/listening/test-1/m2e-cr04.mp3?v=20261006',
             image: '/img/listening/stock_modal/male-1.webp',
             speakerGender: 'male',
             stem: 'Choose the best response.',
@@ -899,7 +899,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
           {
             id: 'lt1-m2e-cr5',
             type: 'choose_response',
-            audio: '/audio/listening/test-1/m2e-cr05.mp3',
+            audio: '/audio/listening/test-1/m2e-cr05.mp3?v=20261006',
             image: '/img/listening/stock_modal/female-1.webp',
             speakerGender: 'female',
             stem: 'Choose the best response.',
@@ -918,7 +918,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
           {
             id: 'lt1-m2e-conv1',
             title: 'Listen to a conversation.',
-            audio: '/audio/listening/test-1/m2e-conv1.mp3',
+            audio: '/audio/listening/test-1/m2e-conv1.mp3?v=20261006',
             image: '/img/listening/two_people/people-1.webp',
             transcript: 'Man: Hi Maria, are you going to the library this afternoon?\nWoman: Yes, I need to return some books before they are overdue.\nMan: Could you bring back my book too? I left it on the desk in your room.\nWoman: Sure, no problem. What is the title of the book?\nMan: It is a history textbook with a green cover. The author is Anderson.\nWoman: Got it. I will pick it up before I leave.\nMan: Thanks, that really helps me. I have a class at two and cannot go myself.',
             questions: [
@@ -951,7 +951,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
         {
           id: 'lt1-m2e-conv2',
           title: 'Listen to a conversation.',
-          audio: '/audio/listening/test-1/m2e-conv2.mp3',
+          audio: '/audio/listening/test-1/m2e-conv2.mp3?v=20261006',
           image: '/img/listening/two_people/people-1.webp',
           transcript: 'Woman: Hi Tom, did you find a place to stay for the conference next month?\nMan: Yes, I booked a small hotel near the campus. It was the cheapest option.\nWoman: Is it close enough to walk?\nMan: It is about a fifteen-minute walk. Not bad if the weather is nice.\nWoman: Are you presenting any research?\nMan: Just a poster, but I am a little nervous about it.',
           questions: [
@@ -986,7 +986,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
           {
             id: 'lt1-m2e-ann1',
             title: 'Listen to an announcement at a university.',
-            audio: '/audio/listening/test-1/m2e-ann1.mp3',
+            audio: '/audio/listening/test-1/m2e-ann1.mp3?v=20261006',
             image: '/img/listening/announcement/female-1.webp',
             speakerGender: 'female',
             transcript: 'Good morning, students. I want to remind everyone that the campus shuttle will not run this Sunday because of the holiday. Regular service will start again on Monday morning. If you need transportation on Sunday, you can use the city bus or call a taxi. The campus parking office is also closed on Sunday. Please plan ahead. Thank you, and enjoy the holiday weekend.',
@@ -1020,7 +1020,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
         {
           id: 'lt1-m2e-ann2',
           title: 'Listen to an announcement at a university.',
-          audio: '/audio/listening/test-1/m2e-ann2.mp3',
+          audio: '/audio/listening/test-1/m2e-ann2.mp3?v=20261006',
           image: '/img/listening/announcement/female-1.webp',
           speakerGender: 'female',
           transcript: 'Hello students. Just a reminder that the campus bookstore will close two hours early next Friday for staff training. The bookstore will close at four p.m. instead of six. Normal hours will resume on Saturday morning. If you need to buy textbooks or supplies for next week, please plan to come in earlier on Friday or wait until Saturday. Thank you for your understanding.',
@@ -1056,7 +1056,7 @@ window.LISTENING_SECTION_1 = window.LISTENING_TEST_1 = {
           {
             id: 'lt1-m2e-talk1',
             title: 'Listen to a talk in a biology class.',
-            audio: '/audio/listening/test-1/m2e-talk1.mp3',
+            audio: '/audio/listening/test-1/m2e-talk1.mp3?v=20261006',
             image: '/img/listening/announcement/male-1.webp',
             speakerGender: 'male',
             transcript: 'Today we are going to talk about how trees grow. Every spring, trees begin growing new leaves and branches. The tree gets energy from the sun through its leaves. The roots take water and nutrients from the soil. As the tree gets older, its trunk becomes thicker each year. If you cut down a tree, you can count the rings inside the trunk to see how old it is. Each ring usually shows one year of growth. Trees grow faster in years with plenty of rain and slower in dry years. By looking at tree rings, scientists can learn about weather from many years ago.',
