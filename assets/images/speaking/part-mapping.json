@@ -1,0 +1,485 @@
+{
+  "test-1": {
+    "regionToPartIndex": [
+      [
+        0,
+        1,
+        5
+      ],
+      2,
+      3,
+      4,
+      null,
+      null,
+      6
+    ],
+    "partToRegionIndex": [
+      0,
+      0,
+      1,
+      2,
+      3,
+      0,
+      6
+    ],
+    "notes": "R0(174,202)=Circulation desk(top-left librarian). R1(492,360)=Book stacks(center shelves). R2(964,221)=Student at laptop(top-right). R3(179,555)=Self-checkout machine(bottom-left kiosk). R4(817,456)=Study carrels(right-center desk+lamp). R5(571,617)=Reserved books cart(bottom-center). R6(970,668)=Quiet Zone sign(bottom-right)."
+  },
+  "test-2": {
+    "regionToPartIndex": [
+      [
+        0,
+        1,
+        5
+      ],
+      [
+        4,
+        6
+      ],
+      2,
+      3
+    ],
+    "partToRegionIndex": [
+      0,
+      0,
+      2,
+      3,
+      1,
+      0,
+      1
+    ],
+    "notes": "R0(235,227)=Advisor at desk(top-left woman+computer). R1(963,186)=Student in chair(top-right). R2(637,322)=Bookshelf(center tall shelves). R3(208,600)=Wall clock(bottom-left). R4(298,761)=Diploma(bottom small frame). R5(980,599)=Filing cabinet(bottom-right). R6(602,743)=Waiting chairs(bottom-center row)."
+  },
+  "test-3": {
+    "regionToPartIndex": [
+      0,
+      4,
+      1,
+      3,
+      2,
+      6,
+      5
+    ],
+    "partToRegionIndex": [
+      0,
+      2,
+      4,
+      3,
+      1,
+      6,
+      5
+    ],
+    "notes": "R0(155,229)=Professor at whiteboard(top-left). R1(593,167)=Students at bench(top-center goggles). R2(273,307)=Microscope(left-center small). R3(970,227)=Beakers and flasks(top-right). R4(202,639)=Emergency eyewash(bottom-left). R5(620,637)=Fume hood(bottom-center). R6(981,631)=Lab reports table(bottom-right)."
+  },
+  "test-4": {
+    "regionToPartIndex": [
+      5,
+      0,
+      [
+        2,
+        6
+      ],
+      null,
+      1,
+      3,
+      4
+    ],
+    "partToRegionIndex": [
+      1,
+      4,
+      2,
+      5,
+      6,
+      0,
+      2
+    ],
+    "notes": "R0(185,325)=Students on sofa(top-left). R1(579,252)=Kitchenette(top-center microwave+kettle). R2(966,247)=Notice board(top-right cork board). R3(183,691)=Vending machine(bottom-left). R4(211,723)=Person with laundry(bottom-left-adjacent person+basket). R5(579,715)=Study table(bottom-center desk+lamp). R6(961,713)=TV on wall(bottom-right)."
+  },
+  "test-5": {
+    "regionToPartIndex": [
+      0,
+      6,
+      [
+        2,
+        3
+      ],
+      [
+        1,
+        5
+      ],
+      4
+    ],
+    "partToRegionIndex": [
+      0,
+      3,
+      2,
+      2,
+      4,
+      3,
+      1
+    ],
+    "notes": "R0(217,266)=Checkout counter(top-left cashier+register). R1(966,197)=Textbook shelves(top-right tall shelf). R2(453,457)=Browsing student(center large tile). R3(870,362)=Merchandise rack(right clothing). R4(228,721)=Bulletin board(bottom-left). R5(824,624)=Supplies display(bottom-center-right). R6(937,719)=Calculator case(bottom-right glass case)."
+  },
+  "test-6": {
+    "regionToPartIndex": [
+      [
+        0,
+        5
+      ],
+      null,
+      3,
+      null,
+      4,
+      [
+        2,
+        6
+      ],
+      1
+    ],
+    "partToRegionIndex": [
+      0,
+      6,
+      5,
+      2,
+      4,
+      0,
+      5
+    ],
+    "notes": "R0(215,257)=Hot food counter(top-left chef serving). R1(578,178)=Beverage dispenser(top-center tall machine). R2(941,261)=Salad bar(top-right bar+sneeze guard). R3(573,466)=Cashier at register(center student paying). R4(223,697)=Dining tables(bottom-left students eating). R5(1025,525)=Tray return window(right stacked trays). R6(930,697)=Menu board(bottom-right specials sign)."
+  },
+  "test-7": {
+    "regionToPartIndex": [
+      [
+        1,
+        3
+      ],
+      [
+        2,
+        4
+      ],
+      5,
+      0,
+      null,
+      6
+    ],
+    "partToRegionIndex": [
+      3,
+      0,
+      1,
+      0,
+      1,
+      2,
+      5
+    ],
+    "notes": "R0(218,213)=Workstations(top-left dual monitors). R1(584,229)=Typing student(top-center). R2(929,261)=Instructions whiteboard(top-right board with text). R3(582,456)=Printer and scanner(center machine). R4(247,657)=Lab assistant(bottom-left man helping). R5(946,487)=Cable shelf(right shelf+adapters). R6(929,691)=No-food sign(bottom-right sign)."
+  },
+  "test-8": {
+    "regionToPartIndex": [
+      [
+        1,
+        6
+      ],
+      [
+        0,
+        2
+      ],
+      null,
+      5,
+      4,
+      null,
+      3
+    ],
+    "partToRegionIndex": [
+      1,
+      0,
+      1,
+      6,
+      4,
+      3,
+      0
+    ],
+    "notes": "R0(307,290)=Tiered seating(top-left large rows). R1(998,220)=Professor at podium(top-right). R2(982,389)=Projection screen(right-center). R3(151,697)=Exit door(bottom-left door+sign). R4(748,560)=Wall clock(center-right small). R5(457,669)=Attendance sheet(bottom-center table+papers). R6(965,706)=Podium laptop(bottom-right)."
+  },
+  "test-9": {
+    "regionToPartIndex": [
+      2,
+      null,
+      4,
+      1,
+      6,
+      0,
+      [
+        3,
+        5
+      ]
+    ],
+    "partToRegionIndex": [
+      5,
+      3,
+      0,
+      6,
+      2,
+      6,
+      4
+    ],
+    "notes": "R0(250,220)=Dinosaur skeleton(top-left T-rex). R1(733,190)=Classical bust(top-right bust on column). R2(501,274)=Jewelry display(center glass case). R3(201,518)=Gemstone displays(left cases). R4(881,446)=Visitor waving(right person waving). R5(550,725)=Sphinx statue(bottom-center). R6(967,719)=Information desk(bottom-right curved desk)."
+  },
+  "test-10": {
+    "regionToPartIndex": [
+      4,
+      1,
+      null,
+      6,
+      null,
+      3,
+      [
+        0,
+        2,
+        5
+      ]
+    ],
+    "partToRegionIndex": [
+      6,
+      1,
+      6,
+      5,
+      0,
+      6,
+      3
+    ],
+    "notes": "R0(609,204)=Penguin exhibit(top-center pool+penguins). R1(337,308)=Ticket booth(left kiosk). R2(880,229)=Reptile house(top-right small building). R3(999,223)=Zookeeper(far-right person+bucket — actually another building, assigning to Zookeeper as closest). R4(120,626)=Family with stroller(bottom-left). R5(322,714)=Aviary(bottom-center-left wire cage). R6(771,609)=Map sign(bottom-right large area with sign+plants)."
+  },
+  "test-11": {
+    "regionToPartIndex": [
+      null,
+      null,
+      2,
+      3,
+      1,
+      [
+        0,
+        4,
+        5
+      ],
+      6
+    ],
+    "partToRegionIndex": [
+      5,
+      4,
+      2,
+      3,
+      5,
+      5,
+      6
+    ],
+    "notes": "Regenerated image. R0(190,52)=Chef instructor small element(top-left lamp/light, tiny — maps to Chef instructor as closest). R1(674,80)=Student prep counters(top-center hanging utensils — maps to Student). R2(193,257)=Chef instructor main(top-left large tile with chef at counter). R3(581,205)=Stove with pots(top-center burners). R4(954,199)=Oven(top-right with pots/sink). R5(387,640)=Sink(bottom-left large tile). R6(953,628)=Refrigerator(bottom-right tall fridge). Ingredient shelf part6 → region 6 (shares fridge area)."
+  },
+  "test-12": {
+    "regionToPartIndex": [
+      [
+        0,
+        4
+      ],
+      [
+        1,
+        5
+      ],
+      null,
+      2,
+      6,
+      3
+    ],
+    "partToRegionIndex": [
+      0,
+      1,
+      3,
+      5,
+      0,
+      1,
+      4
+    ],
+    "notes": "Regenerated image with 7 regions. R0(175,319)=Host at lectern(left person at podium). R1(444,256)=Server with tray(center-left person carrying plates). R2(809,247)=Chalkboard menu(right tall chalkboard). R3(620,389)=Family at table(center table with diners — actually small, but center group). R4(380,564)=Dessert display(bottom-left glass case). R5(789,565)=Beverage station(bottom-right water pitcher). R6(967,741)=Chef picture(far bottom-right small frame)."
+  },
+  "test-13": {
+    "regionToPartIndex": [
+      [
+        0,
+        5
+      ],
+      2,
+      1,
+      [
+        3,
+        6
+      ],
+      4
+    ],
+    "partToRegionIndex": [
+      0,
+      2,
+      1,
+      3,
+      4,
+      0,
+      3
+    ],
+    "notes": "R0(202,257)=Reception counter(top-left receptionist). R1(585,161)=Nurse at doorway(top-center nurse+clipboard). R2(924,259)=Water dispenser(top-right cooler). R3(570,476)=Wall television(center-right TV). R4(183,611)=Check-in sign(bottom-left sign+arrow). R5(587,767)=Waiting chairs(bottom-center patients seated). R6(968,668)=Magazine rack(bottom-right)."
+  },
+  "test-14": {
+    "regionToPartIndex": [
+      2,
+      5,
+      6,
+      null,
+      [
+        0,
+        3
+      ],
+      1,
+      4
+    ],
+    "partToRegionIndex": [
+      4,
+      5,
+      0,
+      4,
+      6,
+      1,
+      2
+    ],
+    "notes": "R0(203,301)=Shelved aisles(left tall shelf). R1(588,213)=Produce section(center fruit+veg crates). R2(875,269)=Self-checkout lanes(right-center kiosk). R3(992,255)=Cashier at checkout(far-right conveyor). R4(201,668)=Cart corral(bottom-left nested carts). R5(592,735)=Specials sign(bottom-center banner). R6(965,703)=Bakery display(bottom-right bread+pastry case)."
+  },
+  "test-15": {
+    "regionToPartIndex": [
+      6,
+      [
+        0,
+        3
+      ],
+      1,
+      4,
+      5,
+      null,
+      2
+    ],
+    "partToRegionIndex": [
+      1,
+      2,
+      6,
+      1,
+      3,
+      4,
+      0
+    ],
+    "notes": "R0(554,117)=Barista at espresso machine(top-center). R1(266,242)=Pastry display(left glass case). R2(866,252)=Paying customer(right register). R3(573,512)=Bulletin board(center board+flyers). R4(258,692)=Loft seating(bottom-left sofa+table). R5(1046,485)=Condiment station(far-right small table). R6(932,704)=Chalkboard menu(bottom-right)."
+  },
+  "test-16": {
+    "regionToPartIndex": [
+      null,
+      [
+        2,
+        6
+      ],
+      5,
+      4,
+      3,
+      [
+        0,
+        1
+      ]
+    ],
+    "partToRegionIndex": [
+      5,
+      5,
+      1,
+      4,
+      3,
+      2,
+      1
+    ],
+    "notes": "R0(206,237)=Waiting passengers(top-left bench+luggage). R1(535,156)=Departure board(top-center overhead display). R2(946,221)=Ticket counter(top-right clerk). R3(755,424)=Platform sign(center-right directional sign). R4(605,530)=Help desk(center large desk). R5(213,687)=Priority seating(bottom-left chairs+sign). R6(806,726)=Ticket machine(bottom-right kiosk)."
+  },
+  "test-17": {
+    "regionToPartIndex": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "partToRegionIndex": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "notes": "Composited scene: each part was generated and placed individually, so region i IS part i. R0(188,178)=Check-in desk. R1(576,178)=Departure board. R2(965,178)=Security screening lane. R3(273,458)=Baggage carousel. R4(784,458)=Information kiosk. R5(312,730)=Boarding gate. R6(840,730)=Seating area."
+  },
+  "test-18": {
+    "regionToPartIndex": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "partToRegionIndex": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "notes": "Composited scene: each part was generated and placed individually, so region i IS part i. R0(189,178)=Reception desk. R1(577,178)=Drinking fountain. R2(964,179)=Treadmill row. R3(273,458)=Free weights area. R4(785,458)=Class schedule board. R5(312,730)=Locker room entrance. R6(840,731)=Towel station."
+  },
+  "test-19": {
+    "regionToPartIndex": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "partToRegionIndex": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "notes": "Composited scene: each part was generated and placed individually, so region i IS part i. R0(189,178)=Service counter. R1(577,178)=Stamp display. R2(964,178)=Parcel scales. R3(272,458)=Self-service kiosk. R4(784,458)=Post office boxes. R5(312,730)=Packing table. R6(840,730)=Queue barrier."
+  },
+  "test-20": {
+    "regionToPartIndex": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "partToRegionIndex": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "notes": "Composited scene: each part was generated and placed individually, so region i IS part i. R0(188,179)=Ticket booth. R1(576,178)=Garden map board. R2(964,179)=Greenhouse entrance. R3(273,458)=Plant bed labels. R4(785,458)=Gift shop. R5(312,730)=Cafe tables. R6(841,730)=Tour meeting point."
+  }
+}

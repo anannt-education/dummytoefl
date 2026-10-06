@@ -1,0 +1,292 @@
+/**
+ * TOEFL Writing Practice Test 10 — 2026 format
+ */
+window.WRITING_SECTION_10 = {
+  id: 'writing-test-10',
+  title: 'TOEFL Writing Practice Test 10',
+  format: '2026',
+
+  buildASentence: [
+    {
+      id: 'w10-bas-1',
+      type: 'build_a_sentence',
+      prompt: 'Make an appropriate sentence.',
+      context: 'Two students are walking to a study room.',
+      speakerName: 'Wren',
+      speakerImage: 'female-1.webp',
+      speakerLine: 'Did you finish reading chapter four for sociology?',
+      respondentName: 'Liam',
+      respondentImage: 'male-1.webp',
+      answerPrefix: 'I plan',
+      answerSuffix: '.',
+      numBlanks: 6,
+      wordChunks: ['class', 'the rest', 'to', 'plans', 'before', 'tonight', 'finish'],
+      correctOrder: ['to', 'finish', 'the rest', 'tonight', 'before', 'class'],
+      acceptedOrders: [
+        ['to', 'finish', 'the rest', 'before', 'class', 'tonight']
+      ],
+      extraWord: 'plans',
+      correctSentence: "I plan to finish the rest tonight before class.",
+      grammarPattern: 'present_simple_infinitive',
+      explanation: "The correct sentence is “I plan to finish the rest tonight before class.” The infinitive (to plus the base verb) follows the verb or adjective it completes. The word “plans” is an extra distractor that does not belong in the answer.",
+      points: 1
+    },
+    {
+      id: 'w10-bas-2',
+      type: 'build_a_sentence',
+      prompt: 'Make an appropriate sentence.',
+      context: 'A new student is asking the dorm advisor about laundry rules.',
+      speakerName: 'Advisor Joy',
+      speakerImage: 'female-2.webp',
+      speakerLine: 'Did anyone show you how to use the laundry app?',
+      respondentName: 'Stefan',
+      respondentImage: 'male-2.webp',
+      answerPrefix: 'I\'ve heard',
+      answerSuffix: '.',
+      numBlanks: 6,
+      wordChunks: ['fairly', 'the', 'hearing', 'process', 'simple', 'should', 'be'],
+      correctOrder: ['the', 'process', 'should', 'be', 'fairly', 'simple'],
+      extraWord: 'hearing',
+      correctSentence: "I\'ve heard the process should be fairly simple.",
+      grammarPattern: 'present_perfect_with_modal',
+      explanation: "The correct sentence is “I've heard the process should be fairly simple.” Present perfect uses have or has plus the past participle to connect a past action to the present. The word “hearing” is an extra distractor that does not belong in the answer.",
+      points: 1
+    },
+    {
+      id: 'w10-bas-3',
+      type: 'build_a_sentence',
+      prompt: 'Make an appropriate sentence.',
+      context: 'A student is leaving a meeting with an academic mentor.',
+      speakerName: 'Mentor Knox',
+      speakerImage: 'male-3.webp',
+      speakerLine: 'Will you have time to revise the proposal this week?',
+      respondentName: 'Talia',
+      respondentImage: 'female-3.webp',
+      answerPrefix: 'I\'ll',
+      answerSuffix: '.',
+      numBlanks: 6,
+      wordChunks: ['on', 'class', 'it', 'work', 'after', 'on Friday', 'leaves'],
+      correctOrder: ['work', 'on', 'it', 'after', 'class', 'on Friday'],
+      acceptedOrders: [
+        ['work', 'on', 'it', 'on Friday', 'after', 'class']
+      ],
+      extraWord: 'leaves',
+      correctSentence: "I\'ll work on it after class on Friday.",
+      grammarPattern: 'future_with_time_phrase',
+      explanation: "The correct sentence is “I'll work on it after class on Friday.” The future (will or be going to) is followed by the base form of the verb, with any time phrase at the end. The word “leaves” is an extra distractor that does not belong in the answer.",
+      points: 1
+    },
+    {
+      id: 'w10-bas-4',
+      type: 'build_a_sentence',
+      prompt: 'Make an appropriate sentence.',
+      context: 'Two friends are checking a local events calendar.',
+      speakerName: 'Annika',
+      speakerImage: 'female-4.webp',
+      speakerLine: 'Should we go to the food festival or the art walk on Saturday?',
+      respondentName: 'Theo',
+      respondentImage: 'male-4.webp',
+      answerPrefix: 'Let\'s',
+      answerSuffix: '.',
+      numBlanks: 6,
+      wordChunks: ['go', 'this time', 'festival', 'visiting', 'the', 'food', 'to'],
+      correctOrder: ['go', 'to', 'the', 'food', 'festival', 'this time'],
+      extraWord: 'visiting',
+      correctSentence: "Let\'s go to the food festival this time.",
+      grammarPattern: 'imperative_with_phrase',
+      explanation: "The correct sentence is “Let's go to the food festival this time.” The imperative starts with the base verb and has no subject. The word “visiting” is an extra distractor that does not belong in the answer.",
+      points: 1
+    },
+    {
+      id: 'w10-bas-5',
+      type: 'build_a_sentence',
+      prompt: 'Make an appropriate sentence.',
+      context: 'Two students are studying for an oral presentation.',
+      speakerName: 'Roman',
+      speakerImage: 'male-5.webp',
+      speakerLine: 'How long do you expect your part to last?',
+      respondentName: 'Anya',
+      respondentImage: 'female-5.webp',
+      answerPrefix: 'About',
+      answerSuffix: '.',
+      numBlanks: 6,
+      wordChunks: ['minutes', 'don\'t', 'if', 'six', 'rush', 'I', 'rushing'],
+      correctOrder: ['six', 'minutes', 'if', 'I', 'don\'t', 'rush'],
+      extraWord: 'rushing',
+      correctSentence: "About six minutes if I don\'t rush.",
+      grammarPattern: 'conditional_negative',
+      explanation: "The correct sentence is “About six minutes if I don't rush.” A conditional joins an if-clause with a result clause; keep the two clauses in order and match their verb forms. The word “rushing” is an extra distractor that does not belong in the answer.",
+      points: 1
+    },
+    {
+      id: 'w10-bas-6',
+      type: 'build_a_sentence',
+      prompt: 'Make an appropriate sentence.',
+      context: 'A student is asking a librarian for an interlibrary loan.',
+      speakerName: 'Librarian',
+      speakerImage: 'female-6.webp',
+      speakerLine: 'Did you find the book you needed for your research?',
+      respondentName: 'Cyrus',
+      respondentImage: 'male-6.webp',
+      answerPrefix: 'Could you',
+      answerSuffix: '?',
+      numBlanks: 6,
+      wordChunks: ['me', 'help', 'helps', 'from another', 'library', 'request', 'a copy'],
+      correctOrder: ['help', 'me', 'request', 'a copy', 'from another', 'library'],
+      extraWord: 'helps',
+      correctSentence: "Could you help me request a copy from another library?",
+      grammarPattern: 'modal_with_object_infinitive',
+      explanation: "The correct sentence is “Could you help me request a copy from another library?” A modal verb (can, should, must, would, will) is always followed by the base form of the next verb. The word “helps” is an extra distractor that does not belong in the answer.",
+      points: 1
+    },
+    {
+      id: 'w10-bas-7',
+      type: 'build_a_sentence',
+      prompt: 'Make an appropriate sentence.',
+      context: 'Two friends are choosing a hostel for spring break.',
+      speakerName: 'Lula',
+      speakerImage: 'female-1.webp',
+      speakerLine: 'Which hostel are you leaning toward booking?',
+      respondentName: 'Pedro',
+      respondentImage: 'male-2.webp',
+      answerPrefix: 'I prefer',
+      answerSuffix: '.',
+      numBlanks: 6,
+      wordChunks: ['the', 'reviewed', 'reviews', 'one', 'has', 'the best', 'that'],
+      correctOrder: ['the', 'one', 'that', 'has', 'the best', 'reviews'],
+      extraWord: 'reviewed',
+      correctSentence: "I prefer the one that has the best reviews.",
+      grammarPattern: 'relative_clause_superlative',
+      explanation: "The correct sentence is “I prefer the one that has the best reviews.” The relative clause (introduced by that, who, which, or when) comes directly after the noun it describes. The word “reviewed” is an extra distractor that does not belong in the answer.",
+      points: 1
+    },
+    {
+      id: 'w10-bas-8',
+      type: 'build_a_sentence',
+      prompt: 'Make an appropriate sentence.',
+      context: 'A student is talking with the bursar about a billing question.',
+      speakerName: 'Bursar Staff',
+      speakerImage: 'female-3.webp',
+      speakerLine: 'Have you reviewed the breakdown of your charges this semester?',
+      respondentName: 'Hank',
+      respondentImage: 'male-1.webp',
+      answerPrefix: 'I\'m wondering',
+      answerSuffix: '.',
+      numBlanks: 6,
+      wordChunks: ['appears', 'appearing', 'fee', 'twice', 'why', 'lab', 'the'],
+      correctOrder: ['why', 'the', 'lab', 'fee', 'appears', 'twice'],
+      extraWord: 'appearing',
+      correctSentence: "I\'m wondering why the lab fee appears twice.",
+      grammarPattern: 'embedded_why_question',
+      explanation: "The correct sentence is “I'm wondering why the lab fee appears twice.” This is an embedded (indirect) question, so after the question word you keep statement word order (subject then verb), not question inversion. The word “appearing” is an extra distractor that does not belong in the answer.",
+      points: 1
+    },
+    {
+      id: 'w10-bas-9',
+      type: 'build_a_sentence',
+      prompt: 'Make an appropriate sentence.',
+      context: 'A student is leaving a thank-you note in the staff room.',
+      speakerName: 'Staff Member',
+      speakerImage: 'male-4.webp',
+      speakerLine: 'Did the catering arrive on time for the workshop?',
+      respondentName: 'Solene',
+      respondentImage: 'female-2.webp',
+      answerPrefix: 'Everyone',
+      answerSuffix: '.',
+      numBlanks: 6,
+      wordChunks: ['gluten-free', 'options', 'with', 'thrilled', 'the', 'thrilling', 'was'],
+      correctOrder: ['was', 'thrilled', 'with', 'the', 'gluten-free', 'options'],
+      extraWord: 'thrilling',
+      correctSentence: "Everyone was thrilled with the gluten-free options.",
+      grammarPattern: 'past_simple_passive_with_object',
+      explanation: "The correct sentence is “Everyone was thrilled with the gluten-free options.” This is a passive structure: the thing affected comes first, followed by a form of be and the past participle. The word “thrilling” is an extra distractor that does not belong in the answer.",
+      points: 1
+    },
+    {
+      id: 'w10-bas-10',
+      type: 'build_a_sentence',
+      prompt: 'Make an appropriate sentence.',
+      context: 'Two students are comparing their summer plans.',
+      speakerName: 'Tess',
+      speakerImage: 'female-5.webp',
+      speakerLine: 'What are you doing this summer?',
+      respondentName: 'Henrik',
+      respondentImage: 'male-5.webp',
+      answerPrefix: 'I\'ll be',
+      answerSuffix: '.',
+      numBlanks: 7,
+      wordChunks: ['East Coast', 'on the', 'research', 'doings', 'with', 'firm', 'doing', 'a small'],
+      correctOrder: ['doing', 'research', 'with', 'a small', 'firm', 'on the', 'East Coast'],
+      acceptedOrders: [
+        ['doing', 'research', 'on the', 'East Coast', 'with', 'a small', 'firm'],
+        ['on the', 'East Coast', 'doing', 'research', 'with', 'a small', 'firm']
+      ],
+      extraWord: 'doings',
+      correctSentence: "I\'ll be doing research with a small firm on the East Coast.",
+      grammarPattern: 'future_continuous',
+      explanation: "The correct sentence is “I'll be doing research with a small firm on the East Coast.” The continuous form uses a form of be plus the -ing form of the verb. The word “doings” is an extra distractor that does not belong in the answer.",
+      points: 1
+    }
+  ],
+
+  writeAnEmail: {
+    id: 'w10-email-1',
+    type: 'write_email',
+    directions: 'You have seven minutes to read the situation and write your email. Aim for about 100 to 150 words. Be sure to address every point in the prompt.',
+    situation: 'You signed up for a study skills workshop hosted by the learning center. After paying the registration fee, you discovered that the workshop is on the same day as a required academic field trip. The learning center has a refund policy that allows refunds only with a written request before the deadline.',
+    taskInstructions: 'Write an email to the learning center coordinator. In your email, do each of the following:',
+    requiredPoints: [
+      'Identify the workshop you registered for and the date you signed up.',
+      'Explain the schedule conflict that has come up.',
+      'Request a refund or, if possible, a transfer to a future date that works for you.'
+    ],
+    recipient: 'learningcenter@state.edu',
+    subject: 'Refund or transfer request for the study skills workshop',
+    writeTime: 420,
+    targetWords: { min: 100, max: 150 },
+    scoringRubric: {
+      5: 'Fully addresses all three prompt points with a clear purpose, appropriate greeting and closing, and a consistently polite, respectful tone. Demonstrates sentence variety, accurate grammar, and precise, well-chosen vocabulary throughout.',
+      4: 'Addresses all three points adequately with a generally appropriate tone. Minor grammar or word-choice issues do not impede understanding. Organization is logical and greeting/closing are present.',
+      3: 'Addresses most points but one may be vague or underdeveloped. Tone is mostly suitable; noticeable grammar or vocabulary problems occur but the overall message remains understandable.',
+      2: 'Partially addresses the prompt. Notable problems with completeness, register, or grammar. Missing greeting or closing, or one point omitted.',
+      1: 'Minimally addresses the situation. Serious language errors make portions of the message hard to understand, or two or more required points are missing.',
+      0: 'Off-topic, blank, copied verbatim from the prompt, or written in a language other than English.'
+    }
+  },
+
+  academicDiscussion: {
+    id: 'w10-disc-1',
+    type: 'academic_discussion',
+    topicIntro: 'Your professor is teaching a class on transportation policy. Write a post responding to the professor\u2019s question.',
+    directions: 'In your response, you should express and support your opinion and make a contribution to the discussion in your own words. An effective response will contain at least 100 words.',
+    professorPrompt: {
+      name: 'Professor Cho',
+      image: 'female-5.webp',
+      text: 'This week we are looking at the rapid spread of electric scooters in cities. Supporters say they replace short car trips, reduce parking demand, and offer flexible last-mile transportation. Critics argue that scooters clutter sidewalks, cause injuries, and are abandoned in piles after a few months. Several cities have responded with strict caps on the number of scooters and designated parking zones. Should cities welcome scooter rentals as a transportation option, or restrict them tightly? Make your case.'
+    },
+    studentResponses: [
+      {
+        name: 'Imani',
+        image: 'female-2.webp',
+        text: 'I think cities should welcome scooters with sensible rules. In Paris and Madrid, scooters cut short car trips by significant percentages and helped people who do not own cars reach the metro faster. Most safety problems can be addressed with painted lanes, helmet requirements, and parking corrals. A complete ban gives up the climate and accessibility benefits over what are mostly fixable issues.'
+      },
+      {
+        name: 'Owen',
+        image: 'male-4.webp',
+        text: 'I think tight restrictions are needed. The trash photos from many cities are not exaggerations: dockless scooters end up in canals, sidewalks, and emergency room admissions for head injuries. Without strict caps, designated parking, and real penalties for blocking sidewalks, the harms outweigh the benefits, especially for elderly pedestrians and people in wheelchairs.'
+      }
+    ],
+    writeTime: 600,
+    targetWords: { min: 100 },
+    scoringRubric: {
+      5: 'A fully successful response. A clear, well-elaborated contribution with a strong opinion that engages meaningfully with the discussion. Well-organized and coherent, with varied sentence structure, accurate grammar, and precise vocabulary.',
+      4: 'A generally successful response. Relevant contribution with an opinion supported by reasons or examples. Adequate development and organization. Occasional minor language errors do not obscure meaning.',
+      3: 'A partially successful response. Contribution is mostly on topic but may lack depth or specific examples. Some organizational issues and noticeable grammar or vocabulary errors, but meaning is generally clear.',
+      2: 'A mostly unsuccessful response. Limited relevance or development, weak organization, and frequent errors that sometimes obscure meaning.',
+      1: 'An unsuccessful response. Largely irrelevant, undeveloped, or incoherent, with severe and persistent language errors.',
+      0: 'Blank, off-topic, not in English, or copied from the prompt.'
+    }
+  }
+};
+
+window.WRITING_TEST_10 = window.WRITING_SECTION_10;

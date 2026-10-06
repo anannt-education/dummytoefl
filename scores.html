@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>My TOEFL Scores</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<script src="js/audio-store.js"></script>
+<script src="js/zip-export.js"></script>
+<script src="data/test-registry.js"></script>
+<script src="js/result-questions.js"></script>
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;background:#f3f4f6;color:#111}
+.wrap{max-width:760px;margin:0 auto;padding:32px 16px 64px}
+h1{font-size:24px;margin:0 0 4px}.sub{color:#666;font-size:14px;margin:0 0 16px}
+a{color:#2563eb}.row{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:12px 14px;margin:0 0 8px}
+.row b{font-size:15px}.row small{color:#666}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+button:disabled{opacity:.6;cursor:wait}
+button{border:1px solid #d1d5db;background:#fff;border-radius:8px;padding:8px 14px;font-size:14px;cursor:pointer}
+button.primary{background:#2563eb;color:#fff;border-color:#2563eb}
+pre{background:#111;color:#eee;border-radius:8px;padding:12px;overflow:auto;font-size:12px}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:8px;overflow:hidden;font-size:14px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid #eee}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p><a href="index.html">&larr; All tests</a></p>
+<h1>My scores</h1>
+<p class="sub">Stored only in this browser (localStorage and IndexedDB).</p>
+<div class="btns">
+<button class="primary" id="dl-json">Download JSON</button>
+<button id="dl-csv">Download CSV</button>
+<button id="dl-zip">Download everything (ZIP)</button>
+<button id="clear">Clear all</button>
+</div>
+<p id="export-status" role="status" aria-live="polite"></p>
+<div id="detail"></div>
+<div id="list"></div>
+</div>
+<script>
+function all() { try { return JSON.parse(localStorage.getItem('toefl_results') || '[]'); } catch (e) { return []; } }
+function secLine(s) {
+  if (!s) return '';
+  var parts = [];
+  ['reading', 'listening', 'writing', 'speaking'].forEach(function (k) {
+    if (s[k] && (s[k].scaled != null || s[k].band != null))
+      parts.push(k + ': ' + (s[k].scaled != null ? s[k].scaled + '/30' : 'band ' + s[k].band));
+  });
+  var tot = (s.total != null) ? ('Total ' + s.total + '/120') : ((s.band != null) ? ('Band ' + s.band) : '');
+  if (s.isPartial) parts.push('writing/speaking: saved for review, not automatically scored');
+  return (tot ? tot + ' · ' : '') + parts.join(' · ');
+}
+function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+function extOf(mime) {
+  if (/mp4/i.test(mime)) return 'mp4';
+  if (/ogg/i.test(mime)) return 'ogg';
+  return 'webm';
+}
+var id = new URLSearchParams(location.search).get('id');
+var results = all().slice().reverse();
+if (id) {
+  var r = all().find(function (x) { return x.id === id; });
+  var d = document.getElementById('detail');
+  if (r) {
+    var clipIds = Object.keys(r.recordings || {});
+    var wKeys = Object.keys(r.writingContent || {});
+    var wHtml = wKeys.length
+      ? wKeys.map(function (k) {
+          var txt = r.writingContent[k] || '';
+          var wc = txt.trim() === '' ? 0 : txt.trim().split(/\s+/).length;
+          return '<div class="row"><b>' + esc(k) + '</b> <small>' + wc + ' words</small><pre>' + esc(txt) + '</pre></div>';
+        }).join('')
+      : '<p>No writing saved.</p>';
+    var aHtml = clipIds.length
+      ? '<div id="clips"><p>Loading recordings…</p></div>'
+      : '<p>No recordings saved.</p>';
+    d.innerHTML = '<div class="row"><b>' + esc(r.testId) + '</b><br><small>' + esc(r.date || '') + ' · ' + esc(secLine(r.scores)) + '</small></div>'
+      + '<h3>Writing (' + wKeys.length + ' tasks)</h3>' + wHtml
+      + '<h3>Speaking recordings (' + clipIds.length + ' clips)</h3>' + aHtml
+      + '<h3>Scores (raw)</h3><pre>' + esc(JSON.stringify(r.scores, null, 1)) + '</pre>';
+    if (clipIds.length && typeof AudioStore !== 'undefined') {
+      (function () {
+        var host = document.getElementById('clips');
+        var items = [];
+        var pending = clipIds.length;
+        clipIds.forEach(function (taskId) {
+          var meta = r.recordings[taskId] || {};
+          AudioStore.getClip(r.id, taskId).then(function (rec) {
+            var dur = meta.duration ? ' · ' + Math.round(meta.duration) + 's' : '';
+            if (rec && rec.blob) {
+              var url = URL.createObjectURL(rec.blob);
+              var fn = r.testId + '-' + taskId + '.' + extOf(rec.mimeType || meta.mimeType);
+              items.push('<div class="row"><b>' + esc(taskId) + '</b><small>' + esc(dur.replace(/^ · /, '')) + '</small><br>'
+                + '<audio controls src="' + url + '" style="width:100%;margin-top:6px"></audio><br>'
+                + '<a href="' + url + '" download="' + esc(fn) + '">Download clip</a></div>');
+            } else {
+              items.push('<div class="row"><b>' + esc(taskId) + '</b><small>audio not stored in this browser' + esc(dur) + '</small></div>');
+            }
+            if (--pending === 0) host.innerHTML = items.join('');
+          });
+        });
+      })();
+    }
+  } else d.textContent = 'Result not found in this browser.';
+}
+var list = document.getElementById('list');
+if (!results.length) list.innerHTML = '<p>No scores yet. <a href="index.html">Take a test</a>.</p>';
+else {
+  var t = '<table><tr><th>Date</th><th>Test</th><th>Score</th><th></th></tr>';
+  results.forEach(function (r) {
+    var nclips = Object.keys(r.recordings || {}).length;
+    var nw = Object.keys(r.writingContent || {}).length;
+    var extra = (nw ? ' · ' + nw + ' texts' : '') + (nclips ? ' · ' + nclips + ' clips' : '');
+    t += '<tr><td>' + esc((r.date || '').slice(0, 10)) + '</td><td>' + esc(r.testId) + '</td><td>' + esc(secLine(r.scores)) + esc(extra) + '</td>'
+      + '<td><a href="scores.html?id=' + encodeURIComponent(r.id) + '">view</a></td></tr>';
+  });
+  list.innerHTML = t + '</table>';
+}
+document.getElementById('dl-json').onclick = async function () {
+  var button = this;
+  var status = document.getElementById('export-status');
+  button.disabled = true;
+  status.textContent = 'Preparing results with question context…';
+  try {
+    var records = await ResultQuestions.enrich(all());
+    var blob = new Blob([JSON.stringify(records, null, 2)], { type: 'application/json' });
+    var a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+    a.download = 'toefl-scores.json'; a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); }, 5000);
+    status.textContent = contextExportStatus(records);
+  } catch (error) {
+    status.textContent = 'JSON export failed. ' + (error.message || 'Please try again.');
+  } finally { button.disabled = false; }
+};
+function contextExportStatus(records) {
+  var warnings = records.some(function (r) { return r.questionContextStatus === 'unavailable' || (r.questionContextWarnings || []).length; });
+  return warnings ? 'Download started. Some question context is unavailable; see questionContextWarnings in the JSON.' : 'Download started with questions and answers.';
+}
+function resultsCsv(records) {
+  var rows = [['id', 'date', 'testId', 'sectionOnly', 'total', 'reading', 'listening', 'writing', 'speaking', 'writingTasks', 'clips']];
+  records.forEach(function (r) {
+    var s = r.scores || {};
+    function cell(k) { return (s[k] && (s[k].scaled != null ? s[k].scaled : s[k].band)) ?? ''; }
+    rows.push([r.id, r.date, r.testId, r.sectionOnly || '', s.total ?? s.band ?? '', cell('reading'), cell('listening'), cell('writing'), cell('speaking'),
+      Object.keys(r.writingContent || {}).length, Object.keys(r.recordings || {}).length]);
+  });
+  return rows.map(function (x) { return x.map(function (v) { return '"' + String(v).replace(/"/g, '""') + '"'; }).join(','); }).join('\n');
+}
+document.getElementById('dl-csv').onclick = function () {
+  var csv = resultsCsv(all());
+  var blob = new Blob([csv], { type: 'text/csv' });
+  var a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = 'toefl-scores.csv'; a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); }, 5000);
+};
+document.getElementById('dl-zip').onclick = async function () {
+  var button = this;
+  var status = document.getElementById('export-status');
+  var records = all();
+  if (!records.length) { status.textContent = 'No saved results to export.'; return; }
+  button.disabled = true;
+  document.getElementById('clear').disabled = true;
+  status.textContent = 'Preparing ZIP, including speaking recordings…';
+  function safeName(value) {
+    return String(value || 'unknown').replace(/[^a-zA-Z0-9_-]/g, '_').slice(0, 100);
+  }
+  try {
+    records = await ResultQuestions.enrich(records);
+    var files = [
+      { name: 'results.json', data: JSON.stringify(records, null, 2) },
+      { name: 'scores.csv', data: resultsCsv(records) }
+    ];
+    var manifest = { exportedAt: new Date().toISOString(), recordings: [], writing: [] };
+    var missing = 0;
+    for (var i = 0; i < records.length; i++) {
+      var result = records[i];
+      var folder = 'results/' + (i + 1) + '-' + safeName(result.testId) + '-' + safeName(result.id) + '/';
+      files.push({ name: folder + 'result.json', data: JSON.stringify(result, null, 2) });
+      var writingIds = Object.keys(result.writingContent || {});
+      writingIds.forEach(function (taskId, index) {
+        var path = folder + 'writing/' + (index + 1) + '-' + safeName(taskId) + '.txt';
+        files.push({ name: path, data: result.writingContent[taskId] });
+        manifest.writing.push({ resultId: result.id, taskId: taskId, path: path });
+      });
+      var taskIds = Object.keys(result.recordings || {});
+      for (var j = 0; j < taskIds.length; j++) {
+        var taskId = taskIds[j];
+        var rec = typeof AudioStore !== 'undefined' ? await AudioStore.getClip(result.id, taskId) : null;
+        if (rec && rec.blob && rec.blob.size) {
+          var path = folder + 'speaking/' + (j + 1) + '-' + safeName(taskId) + '.' + extOf(rec.mimeType || rec.blob.type || result.recordings[taskId].mimeType);
+          files.push({ name: path, data: rec.blob });
+          manifest.recordings.push({ resultId: result.id, taskId: taskId, path: path, status: 'included' });
+        } else {
+          missing++;
+          manifest.recordings.push({ resultId: result.id, taskId: taskId, path: null, status: 'missing or unavailable in this browser' });
+        }
+      }
+    }
+    files.push({ name: 'manifest.json', data: JSON.stringify(manifest, null, 2) });
+    files.push({ name: 'README.txt', data: 'Saved TOEFL practice results from this browser.\nresults.json: all results, answers, times, writing and recording metadata.\nquestionAnswers: per-section questions paired with answers, correct answers and passage/transcript/prompt context.\nNew results preserve session snapshots. Older results reconstruct questions from current datasets; check questionContextStatus and questionContextWarnings.\nSpeaking answers contain recording metadata; use taskId and manifest.json to locate the audio.\nscores.csv: score summaries and task counts (not full responses).\nresults/: individual result JSON, writing text files and available speaking audio.\nSentence-order answers are included in result JSON.\nmanifest.json: task-to-file mapping and missing recording report.\nWriting and speaking are not automatically graded. This archive does not include unfinished test progress or test prompt media.\n' });
+    var blob = await ZipExport.create(files);
+    var url = URL.createObjectURL(blob);
+    var link = document.createElement('a');
+    link.href = url;
+    link.download = 'toefl-results-' + new Date().toISOString().slice(0, 10) + '.zip';
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 60000);
+    status.textContent = 'ZIP download started: ' + records.length + ' results.' + (missing ? ' Warning: ' + missing + ' recordings unavailable; see manifest.json.' : ' All saved recordings included.') + ' ' + contextExportStatus(records);
+  } catch (error) {
+    console.error('ZIP export failed', error);
+    status.textContent = 'ZIP export failed. ' + (error.message || 'Please try again.');
+  } finally {
+    button.disabled = false;
+    document.getElementById('clear').disabled = false;
+  }
+};
+document.getElementById('clear').onclick = function () {
+  if (confirm('Delete all locally stored scores and recordings?')) {
+    var ids = [];
+    try { ids = all().map(function (r) { return r.id; }); } catch (e) {}
+    localStorage.removeItem('toefl_results');
+    if (typeof AudioStore !== 'undefined') {
+      ids.forEach(function (rid) { AudioStore.deleteClips(rid); });
+    }
+    location.reload();
+  }
+};
+</script>
+</body>
+</html>

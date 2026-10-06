@@ -1,0 +1,2952 @@
+/* ============================================================
+   TOEFL iBT Test Interface — ETS-Authentic Styling
+   ============================================================
+   This stylesheet replicates the official ETS TOEFL iBT exam
+   interface. It is intentionally separate from the landing page
+   design system (navy/teal/gold). All colors, spacing, and
+   typography match the real test environment.
+   ============================================================ */
+
+/* ----- CSS Custom Properties -------------------------------- */
+:root {
+  --toolbar-bg: #3b3b3b;
+  --toolbar-text: #ffffff;
+  --content-bg: #e8e8e8;
+  --panel-bg: #ffffff;
+  --border-color: #cccccc;
+  --selected-blue: #1a73e8;
+  --btn-primary: #1a73e8;
+  --btn-text: #ffffff;
+  --review-answered: #4caf50;
+  --review-unanswered: #f44336;
+  --review-not-seen: #9e9e9e;
+  --timer-text: #ffffff;
+  --font-main: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Consolas", "Courier New", monospace;
+  --toolbar-height: 48px;
+  --nav-height: 48px;
+}
+
+
+/* ----- Reset & Base ----------------------------------------- */
+.test-interface,
+.test-interface *,
+.test-interface *::before,
+.test-interface *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.test-interface {
+  font-family: var(--font-main);
+  font-size: 15px;
+  line-height: 1.55;
+  color: #222222;
+  background: var(--content-bg);
+  /* Use dvh on supporting browsers so iOS Safari's URL bar doesn't crop
+     the test; fall back to vh for older browsers. */
+  height: 100vh;
+  height: 100dvh;
+  width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+
+/* =============================================================
+   1. TEST TOOLBAR — Fixed top bar
+   ============================================================= */
+.test-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--toolbar-height);
+  min-height: var(--toolbar-height);
+  background: var(--toolbar-bg);
+  color: var(--toolbar-text);
+  padding: 0 16px;
+  z-index: 100;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.test-toolbar__section-name {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.test-toolbar__center {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.test-toolbar__question-counter {
+  font-size: 13px;
+  font-weight: 400;
+  color: #d0d0d0;
+}
+
+.test-toolbar__right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Volume icon button */
+.test-toolbar__volume-btn {
+  background: none;
+  border: none;
+  color: var(--toolbar-text);
+  cursor: pointer;
+  padding: 4px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  opacity: 0.85;
+  transition: opacity 0.15s;
+}
+
+.test-toolbar__volume-btn:hover {
+  opacity: 1;
+}
+
+/* Help / Hide Timer buttons */
+.test-toolbar__icon-btn {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  color: var(--toolbar-text);
+  font-size: 12px;
+  padding: 3px 10px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.test-toolbar__icon-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+
+/* =============================================================
+   7. TIMER DISPLAY
+   ============================================================= */
+.test-timer {
+  font-size: 16px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--timer-text);
+  letter-spacing: 1px;
+  min-width: 56px;
+  text-align: center;
+}
+
+.test-timer--hidden {
+  visibility: hidden;
+}
+
+.test-timer--warning {
+  color: #ff6b6b;
+  animation: timer-pulse 1s ease-in-out infinite;
+}
+
+@keyframes timer-pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.4; }
+}
+
+
+/* =============================================================
+   2. SPLIT-SCREEN LAYOUT
+   ============================================================= */
+.test-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Question panel (left) */
+.test-panel--question {
+  flex: 1 1 50%;
+  min-width: 320px;
+  background: var(--panel-bg);
+  overflow-y: auto;
+  padding: 28px 32px;
+  border-right: 1px solid var(--border-color);
+}
+
+/* Passage panel (right) */
+.test-panel--passage {
+  flex: 1 1 50%;
+  min-width: 320px;
+  background: var(--panel-bg);
+  overflow-y: auto;
+  padding: 28px 32px;
+}
+
+/* Divider / resizer */
+.test-divider {
+  width: 6px;
+  cursor: col-resize;
+  background: var(--border-color);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 10;
+  transition: background 0.15s;
+}
+
+.test-divider:hover,
+.test-divider--active {
+  background: var(--selected-blue);
+}
+
+.test-divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 2px;
+  height: 32px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 1px;
+}
+
+/* Full-width panel (listening / speaking / writing) */
+.test-panel--full {
+  flex: 1;
+  background: var(--panel-bg);
+  overflow-y: auto;
+  padding: 36px 48px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+
+/* =============================================================
+   3. RADIO BUTTONS — Custom 20 px circles
+   ============================================================= */
+.test-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.test-radio {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  padding: 10px 14px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: background 0.12s, border-color 0.12s;
+}
+
+.test-radio:hover {
+  background: #f0f4ff;
+  border-color: #d4e0f7;
+}
+
+.test-radio input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.test-radio__circle {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border: 2px solid #888888;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s;
+  margin-top: 1px;
+}
+
+.test-radio__circle::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: transparent;
+  transition: background 0.15s;
+}
+
+.test-radio--selected .test-radio__circle {
+  border-color: var(--selected-blue);
+}
+
+.test-radio--selected .test-radio__circle::after {
+  background: var(--selected-blue);
+}
+
+.test-radio--selected {
+  background: #e8f0fe;
+  border-color: #c5d7f5;
+}
+
+.test-radio__label {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #222222;
+}
+
+/* Answer letter markers (A, B, C, D) */
+.test-radio__letter {
+  font-weight: 600;
+  margin-right: 4px;
+  color: #555555;
+}
+
+
+/* =============================================================
+   4. CHECKBOXES — Multi-select listening questions
+   ============================================================= */
+.test-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.test-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  padding: 10px 14px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: background 0.12s, border-color 0.12s;
+}
+
+.test-checkbox:hover {
+  background: #f0f4ff;
+  border-color: #d4e0f7;
+}
+
+.test-checkbox input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.test-checkbox__box {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border: 2px solid #888888;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, border-color 0.15s;
+  margin-top: 1px;
+}
+
+.test-checkbox--selected .test-checkbox__box {
+  background: var(--selected-blue);
+  border-color: var(--selected-blue);
+}
+
+/* Checkmark */
+.test-checkbox--selected .test-checkbox__box::after {
+  content: "";
+  width: 6px;
+  height: 10px;
+  border: solid #ffffff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  margin-top: -2px;
+}
+
+.test-checkbox__label {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #222222;
+}
+
+
+/* =============================================================
+   5. NAVIGATION BAR — Bottom bar
+   ============================================================= */
+.test-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-height);
+  min-height: var(--nav-height);
+  background: var(--toolbar-bg);
+  padding: 0 16px;
+  z-index: 100;
+  flex-shrink: 0;
+}
+
+.test-nav__left,
+.test-nav__right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.test-nav__btn {
+  height: 32px;
+  padding: 0 20px;
+  font-size: 13px;
+  font-weight: 500;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 0.15s, opacity 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.test-nav__btn--primary {
+  background: var(--btn-primary);
+  color: var(--btn-text);
+}
+
+.test-nav__btn--primary:hover {
+  background: #1565c0;
+}
+
+.test-nav__btn--secondary {
+  background: #555555;
+  color: var(--btn-text);
+}
+
+.test-nav__btn--secondary:hover {
+  background: #666666;
+}
+
+.test-nav__btn--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.test-nav__btn--submit {
+  background: var(--review-answered);
+  color: var(--btn-text);
+}
+
+.test-nav__btn--submit:hover {
+  background: #43a047;
+}
+
+
+/* =============================================================
+   6. REVIEW SCREEN — Question status grid
+   ============================================================= */
+.test-review {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 36px 24px;
+}
+
+.test-review__title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #222222;
+}
+
+.test-review__subtitle {
+  font-size: 14px;
+  color: #666666;
+  margin-bottom: 24px;
+}
+
+.test-review__legend {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 20px;
+  font-size: 13px;
+  color: #555555;
+}
+
+.test-review__legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.test-review__legend-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+}
+
+.test-review__legend-dot--answered {
+  background: var(--review-answered);
+}
+
+.test-review__legend-dot--unanswered {
+  background: var(--review-unanswered);
+}
+
+.test-review__legend-dot--not-seen {
+  background: var(--review-not-seen);
+}
+
+.test-review__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 48px);
+  gap: 8px;
+}
+
+.test-review__item {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 4px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.15s;
+}
+
+.test-review__item:hover {
+  transform: scale(1.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.test-review__item--answered {
+  background: var(--review-answered);
+}
+
+.test-review__item--unanswered {
+  background: var(--review-unanswered);
+}
+
+.test-review__item--not-seen {
+  background: var(--review-not-seen);
+}
+
+.test-review__item--current {
+  outline: 3px solid var(--selected-blue);
+  outline-offset: 2px;
+}
+
+
+/* =============================================================
+   8. AUDIO PLAYER
+   ============================================================= */
+.test-audio {
+  background: #f5f5f5;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 20px 24px;
+  max-width: 600px;
+  margin: 24px auto;
+}
+
+.test-audio__controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.test-audio__play-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--btn-primary);
+  color: var(--btn-text);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+
+.test-audio__play-btn:hover {
+  background: #1565c0;
+}
+
+.test-audio__play-btn--disabled {
+  background: #999999;
+  cursor: not-allowed;
+}
+
+.test-audio__progress-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.test-audio__progress-bar {
+  width: 100%;
+  height: 6px;
+  background: #d0d0d0;
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+
+.test-audio__progress-fill {
+  height: 100%;
+  background: var(--selected-blue);
+  border-radius: 3px;
+  width: 0%;
+  transition: width 0.25s linear;
+}
+
+.test-audio__time {
+  font-size: 12px;
+  color: #888888;
+  font-variant-numeric: tabular-nums;
+  display: flex;
+  justify-content: space-between;
+}
+
+.test-audio__volume {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.test-audio__volume-slider {
+  width: 80px;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #d0d0d0;
+  border-radius: 2px;
+  outline: none;
+}
+
+.test-audio__volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--selected-blue);
+  cursor: pointer;
+}
+
+.test-audio__volume-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--selected-blue);
+  cursor: pointer;
+  border: none;
+}
+
+
+/* =============================================================
+   9. RECORDING INDICATOR — Speaking section
+   ============================================================= */
+.test-recording {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  background: #fff5f5;
+  border: 1px solid #ffcccc;
+  border-radius: 6px;
+  max-width: 320px;
+  margin: 20px auto;
+}
+
+.test-recording__dot {
+  width: 12px;
+  height: 12px;
+  min-width: 12px;
+  background: #f44336;
+  border-radius: 50%;
+  animation: recording-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes recording-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.5; transform: scale(0.85); }
+}
+
+.test-recording__text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #d32f2f;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.test-recording__waveform {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 24px;
+  margin-left: auto;
+}
+
+.test-recording__bar {
+  width: 3px;
+  background: #f44336;
+  border-radius: 1px;
+  animation: waveform-bar 0.8s ease-in-out infinite;
+}
+
+.test-recording__bar:nth-child(1) { height: 8px;  animation-delay: 0.0s; }
+.test-recording__bar:nth-child(2) { height: 16px; animation-delay: 0.1s; }
+.test-recording__bar:nth-child(3) { height: 12px; animation-delay: 0.2s; }
+.test-recording__bar:nth-child(4) { height: 20px; animation-delay: 0.3s; }
+.test-recording__bar:nth-child(5) { height: 10px; animation-delay: 0.4s; }
+.test-recording__bar:nth-child(6) { height: 16px; animation-delay: 0.15s; }
+.test-recording__bar:nth-child(7) { height: 8px;  animation-delay: 0.25s; }
+
+@keyframes waveform-bar {
+  0%, 100% { transform: scaleY(1); }
+  50%      { transform: scaleY(0.35); }
+}
+
+
+/* =============================================================
+   10. PREP / RESPONSE COUNTDOWN — Circular ring
+   ============================================================= */
+.test-countdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 48px 24px;
+}
+
+.test-countdown__label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #555555;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.test-countdown__ring {
+  position: relative;
+  width: 160px;
+  height: 160px;
+}
+
+.test-countdown__ring svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.test-countdown__ring-bg {
+  fill: none;
+  stroke: #e0e0e0;
+  stroke-width: 6;
+}
+
+.test-countdown__ring-fill {
+  fill: none;
+  stroke: var(--selected-blue);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dasharray: 440;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1s linear;
+}
+
+.test-countdown__time {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 42px;
+  font-weight: 300;
+  font-variant-numeric: tabular-nums;
+  color: #333333;
+}
+
+.test-countdown__sublabel {
+  font-size: 13px;
+  color: #888888;
+}
+
+
+/* =============================================================
+   11. WRITING EDITOR
+   ============================================================= */
+.test-writing {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.test-writing__header {
+  padding: 10px 16px;
+  background: #f5f5f5;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 13px;
+  color: #666666;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.test-writing__textarea {
+  flex: 1;
+  width: 100%;
+  padding: 20px 24px;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.7;
+  color: #222222;
+  background: var(--panel-bg);
+  border: none;
+  outline: none;
+  resize: none;
+  overflow-y: auto;
+}
+
+.test-writing__textarea::placeholder {
+  color: #bbbbbb;
+}
+
+.test-writing__footer {
+  padding: 8px 16px;
+  background: #f5f5f5;
+  border-top: 1px solid var(--border-color);
+  font-size: 13px;
+  color: #666666;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.test-writing__word-count {
+  font-variant-numeric: tabular-nums;
+}
+
+.test-writing__cut-paste {
+  display: flex;
+  gap: 12px;
+}
+
+.test-writing__tool-btn {
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
+  padding: 2px 10px;
+  font-size: 12px;
+  color: #555555;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.test-writing__tool-btn:hover {
+  background: #e8e8e8;
+}
+
+
+/* =============================================================
+   12. NOTEPAD OVERLAY — Floating, draggable
+   ============================================================= */
+.test-notepad {
+  position: fixed;
+  top: 80px;
+  right: 40px;
+  width: 340px;
+  max-height: 400px;
+  background: #fffde7;
+  border: 1px solid #e0d88c;
+  border-radius: 6px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.test-notepad--hidden {
+  display: none;
+}
+
+.test-notepad__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: #f5f0c4;
+  border-bottom: 1px solid #e0d88c;
+  cursor: move;
+  user-select: none;
+}
+
+.test-notepad__title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #5d5a2f;
+}
+
+.test-notepad__close {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #888866;
+  cursor: pointer;
+  padding: 0 4px;
+  line-height: 1;
+}
+
+.test-notepad__close:hover {
+  color: #555533;
+}
+
+.test-notepad__body {
+  flex: 1;
+  overflow: hidden;
+}
+
+.test-notepad__textarea {
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  padding: 10px 12px;
+  font-family: var(--font-main);
+  font-size: 13px;
+  line-height: 1.5;
+  color: #333322;
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+}
+
+
+/* =============================================================
+   13. SYSTEM CHECK SCREEN
+   ============================================================= */
+.test-syscheck {
+  max-width: 560px;
+  margin: 60px auto;
+  padding: 36px 40px;
+  background: var(--panel-bg);
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+
+.test-syscheck__title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: #222222;
+}
+
+.test-syscheck__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.test-syscheck__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: #333333;
+}
+
+.test-syscheck__icon {
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 50%;
+}
+
+.test-syscheck__icon--pass {
+  background: #e8f5e9;
+  color: var(--review-answered);
+}
+
+.test-syscheck__icon--fail {
+  background: #ffebee;
+  color: var(--review-unanswered);
+}
+
+.test-syscheck__icon--loading {
+  background: #fff8e1;
+  color: #f9a825;
+  animation: syscheck-spin 1s linear infinite;
+}
+
+@keyframes syscheck-spin {
+  to { transform: rotate(360deg); }
+}
+
+.test-syscheck__start-btn {
+  margin-top: 28px;
+  width: 100%;
+  height: 40px;
+  background: var(--btn-primary);
+  color: var(--btn-text);
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.test-syscheck__start-btn:hover {
+  background: #1565c0;
+}
+
+.test-syscheck__start-btn:disabled {
+  background: #999999;
+  cursor: not-allowed;
+}
+
+
+/* =============================================================
+   14. SECTION TRANSITION SCREEN
+   ============================================================= */
+.test-transition {
+  position: fixed;
+  inset: 0;
+  background: var(--content-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 800;
+}
+
+.test-transition__card {
+  text-align: center;
+  max-width: 520px;
+  padding: 48px 40px;
+  background: var(--panel-bg);
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.test-transition__section-label {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #888888;
+  margin-bottom: 8px;
+}
+
+.test-transition__section-name {
+  font-size: 28px;
+  font-weight: 600;
+  color: #222222;
+  margin-bottom: 12px;
+}
+
+.test-transition__info {
+  font-size: 14px;
+  color: #666666;
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.test-transition__continue-btn {
+  height: 42px;
+  padding: 0 36px;
+  background: var(--btn-primary);
+  color: var(--btn-text);
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.test-transition__continue-btn:hover {
+  background: #1565c0;
+}
+
+
+/* =============================================================
+   15. PAUSE OVERLAY
+   ============================================================= */
+.test-pause {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 900;
+  color: #ffffff;
+}
+
+.test-pause__title {
+  font-size: 32px;
+  font-weight: 300;
+  margin-bottom: 12px;
+}
+
+.test-pause__message {
+  font-size: 14px;
+  color: #bbbbbb;
+  margin-bottom: 32px;
+}
+
+.test-pause__resume-btn {
+  height: 44px;
+  padding: 0 40px;
+  background: var(--btn-primary);
+  color: var(--btn-text);
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.test-pause__resume-btn:hover {
+  background: #1565c0;
+}
+
+
+/* =============================================================
+   16. CONFIRMATION DIALOG — Submit modal
+   ============================================================= */
+.test-confirm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 950;
+}
+
+.test-confirm {
+  background: var(--panel-bg);
+  border-radius: 8px;
+  padding: 32px 36px;
+  max-width: 420px;
+  width: 90%;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.test-confirm__title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #222222;
+}
+
+.test-confirm__message {
+  font-size: 14px;
+  color: #666666;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.test-confirm__actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.test-confirm__btn {
+  height: 36px;
+  padding: 0 24px;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.test-confirm__btn--yes {
+  background: var(--btn-primary);
+  color: var(--btn-text);
+}
+
+.test-confirm__btn--yes:hover {
+  background: #1565c0;
+}
+
+.test-confirm__btn--no {
+  background: #e0e0e0;
+  color: #333333;
+}
+
+.test-confirm__btn--no:hover {
+  background: #d0d0d0;
+}
+
+
+/* =============================================================
+   17. DESKTOP-ONLY WARNING
+   ============================================================= */
+.test-desktop-warning {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--content-bg);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 32px;
+}
+
+.test-desktop-warning__icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+  color: #999999;
+}
+
+.test-desktop-warning__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 12px;
+}
+
+.test-desktop-warning__message {
+  font-size: 14px;
+  color: #666666;
+  line-height: 1.6;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Legacy desktop-warning kill-switch removed — the test is now fully
+   responsive. See the consolidated mobile rules at the bottom of this
+   file. */
+
+
+/* =============================================================
+   18. SENTENCE INSERTION MARKERS — Square markers in passage
+   ============================================================= */
+.test-insertion-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: #333333;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 2px;
+  margin: 0 3px;
+  vertical-align: middle;
+  cursor: pointer;
+  transition: background 0.15s;
+  line-height: 1;
+}
+
+.test-insertion-marker:hover {
+  background: var(--selected-blue);
+}
+
+.test-insertion-marker--selected {
+  background: var(--selected-blue);
+  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.3);
+}
+
+
+/* =============================================================
+   19. VOCABULARY HIGHLIGHT — Highlighted word in passage
+   ============================================================= */
+.test-vocab-highlight {
+  background: #c8e6ff;
+  padding: 1px 4px;
+  border-radius: 2px;
+  font-weight: 600;
+  cursor: default;
+  border-bottom: 2px solid var(--selected-blue);
+}
+
+
+/* =============================================================
+   20. DRAG AND DROP — Prose summary questions
+   ============================================================= */
+.test-dnd {
+  margin-top: 20px;
+}
+
+.test-dnd__instructions {
+  font-size: 14px;
+  color: #555555;
+  margin-bottom: 16px;
+  font-style: italic;
+}
+
+/* Source list of draggable items */
+.test-dnd__source {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.test-dnd__item {
+  padding: 12px 16px;
+  background: #f9f9f9;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 1.5;
+  cursor: grab;
+  transition: box-shadow 0.15s, border-color 0.15s;
+  position: relative;
+  user-select: none;
+}
+
+.test-dnd__item:hover {
+  border-color: var(--selected-blue);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.test-dnd__item--dragging {
+  opacity: 0.5;
+  cursor: grabbing;
+}
+
+.test-dnd__item--ghost {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transform: rotate(1deg);
+  z-index: 600;
+}
+
+.test-dnd__handle {
+  display: inline-flex;
+  margin-right: 10px;
+  color: #aaaaaa;
+  font-size: 16px;
+  vertical-align: middle;
+}
+
+/* Drop zone */
+.test-dnd__drop-zone {
+  min-height: 120px;
+  padding: 16px;
+  border: 2px dashed var(--border-color);
+  border-radius: 6px;
+  background: #fafafa;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.test-dnd__drop-zone--active {
+  border-color: var(--selected-blue);
+  background: #e8f0fe;
+}
+
+.test-dnd__drop-zone--empty::after {
+  content: "Drag answer choices here";
+  color: #aaaaaa;
+  font-size: 14px;
+  text-align: center;
+  padding: 24px;
+}
+
+.test-dnd__drop-zone .test-dnd__item {
+  background: #e8f0fe;
+  border-color: #b8d4f0;
+}
+
+/* Remove button on placed items */
+.test-dnd__remove {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  background: #e0e0e0;
+  color: #666666;
+  border: none;
+  border-radius: 50%;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.12s;
+}
+
+.test-dnd__remove:hover {
+  background: #ffcdd2;
+  color: #c62828;
+}
+
+
+/* =============================================================
+   21. QUESTION TYPES — Specific layouts
+   ============================================================= */
+
+/* Question stem */
+.test-question__stem {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #222222;
+  margin-bottom: 8px;
+}
+
+.test-question__stem strong {
+  font-weight: 600;
+}
+
+/* Question number */
+.test-question__number {
+  font-size: 13px;
+  font-weight: 600;
+  color: #888888;
+  margin-bottom: 6px;
+}
+
+/* Direction text */
+.test-question__directions {
+  font-size: 13px;
+  color: #888888;
+  margin-bottom: 16px;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* Passage title */
+.test-passage__title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #222222;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Passage body */
+.test-passage__body {
+  font-size: 15px;
+  line-height: 1.75;
+  color: #333333;
+}
+
+.test-passage__body p {
+  margin-bottom: 16px;
+  text-indent: 24px;
+}
+
+.test-passage__body p:first-child {
+  text-indent: 0;
+}
+
+/* Passage paragraph highlight (for referenced paragraph) */
+.test-passage__para--highlighted {
+  background: #fff9c4;
+  padding: 8px 12px;
+  border-left: 3px solid #f9a825;
+  margin-left: -12px;
+  margin-right: -12px;
+}
+
+/* Table question type */
+.test-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+  font-size: 14px;
+}
+
+.test-table th,
+.test-table td {
+  border: 1px solid var(--border-color);
+  padding: 10px 14px;
+  text-align: left;
+}
+
+.test-table th {
+  background: #f5f5f5;
+  font-weight: 600;
+  color: #333333;
+}
+
+.test-table td {
+  background: var(--panel-bg);
+}
+
+/* Table cell with radio/checkbox centered */
+.test-table__select-cell {
+  text-align: center;
+  width: 60px;
+}
+
+/* Listening image (lecture diagrams, etc.) */
+.test-question__image {
+  max-width: 100%;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  margin: 16px 0;
+}
+
+
+/* =============================================================
+   22. LOADING STATE
+   ============================================================= */
+.test-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 48px;
+  color: #888888;
+}
+
+.test-loading__spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid #e0e0e0;
+  border-top-color: var(--selected-blue);
+  border-radius: 50%;
+  animation: loading-spin 0.8s linear infinite;
+}
+
+@keyframes loading-spin {
+  to { transform: rotate(360deg); }
+}
+
+.test-loading__text {
+  font-size: 14px;
+  color: #888888;
+}
+
+
+/* =============================================================
+   23. PROGRESS SAVING INDICATOR — Toast
+   ============================================================= */
+.test-save-toast {
+  position: fixed;
+  bottom: 64px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: #333333;
+  color: #ffffff;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  z-index: 700;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.test-save-toast--visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.test-save-toast__check {
+  color: var(--review-answered);
+  font-size: 15px;
+}
+
+
+/* =============================================================
+   UTILITY CLASSES
+   ============================================================= */
+
+/* Hidden but accessible */
+.test-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Scroll container */
+.test-scroll {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #c0c0c0 transparent;
+}
+
+.test-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.test-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.test-scroll::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+  border-radius: 4px;
+}
+
+.test-scroll::-webkit-scrollbar-thumb:hover {
+  background: #a0a0a0;
+}
+
+/* Focus ring for keyboard navigation */
+.test-interface *:focus-visible {
+  outline: 2px solid var(--selected-blue);
+  outline-offset: 2px;
+}
+
+/* Disable text selection on UI chrome */
+.test-toolbar,
+.test-nav,
+.test-review__item,
+.test-countdown {
+  user-select: none;
+}
+
+/* Passage text remains selectable */
+.test-passage__body {
+  user-select: text;
+}
+
+
+/* =============================================================
+   READING TOOLBAR — TestGlider-style top bar for reading section
+   ============================================================= */
+.test-toolbar--reading {
+  background: #1565c0;
+  height: 52px;
+  min-height: 52px;
+  padding: 0 12px;
+  gap: 8px;
+}
+
+.test-toolbar__save-exit {
+  background: #1976d2;
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 5px 16px;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.test-toolbar__save-exit:hover {
+  background: #1e88e5;
+}
+
+.test-toolbar__center-reading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: #ffffff;
+}
+.test-toolbar__section-label {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.test-toolbar__separator {
+  width: 1px;
+  height: 20px;
+  background: rgba(255,255,255,0.3);
+}
+.test-toolbar__question-range {
+  font-weight: 400;
+  color: rgba(255,255,255,0.9);
+}
+
+.test-toolbar__nav-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.test-toolbar__nav-btn {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 5px 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.test-toolbar__nav-btn:hover {
+  background: rgba(255,255,255,0.25);
+}
+.test-toolbar__nav-btn--disabled {
+  opacity: 0.4;
+  cursor: default;
+  pointer-events: none;
+}
+.test-toolbar__nav-btn--review {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.25);
+}
+.test-toolbar__nav-btn--review svg {
+  width: 14px;
+  height: 14px;
+}
+
+
+/* =============================================================
+   LISTENING TOOLBAR & LAYOUTS
+   ============================================================= */
+.test-toolbar--listening {
+  background: #1565c0;
+  height: 52px;
+  min-height: 52px;
+  padding: 0 12px;
+  gap: 8px;
+}
+
+.listening-volume-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.listening-volume-btn:hover {
+  background: rgba(255,255,255,0.25);
+}
+.listening-volume-btn svg {
+  fill: #ffffff;
+}
+
+/* Listening panel - full width content area */
+.listening-panel {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 24px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+/* Speaking panel - full width content area (matches listening style) */
+.speaking-panel {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  overflow-y: auto;
+}
+.speaking-panel .sr-frame {
+  max-width: 720px;
+  width: 100%;
+}
+.speaking-panel .sr-video-wrap {
+  width: 560px;
+  max-width: 90%;
+}
+
+/* Choose Response: image left with divider, options right — full width */
+.listening-cr-layout {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+}
+.listening-cr-image {
+  flex: 0 0 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 24px;
+  border-right: 1px solid #ccc;
+}
+.listening-speaker-img {
+  max-width: 380px;
+  max-height: 480px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.listening-cr-options {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px 48px;
+}
+.listening-options-disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+/* Conversation/Announcement: center image during audio phase */
+.listening-context-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+.listening-context-img {
+  max-width: 900px;
+  max-height: 640px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Conversation/Announcement: image left + question right (questions phase) — full width */
+.listening-context-layout {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+}
+.listening-context-left {
+  flex: 0 0 48%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 24px;
+  border-right: 1px solid #ccc;
+}
+.listening-context-img-side {
+  max-width: 500px;
+  max-height: 600px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.listening-context-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 32px 48px;
+}
+
+/* Module transition screen */
+.listening-module-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+  padding: 40px 24px;
+}
+.listening-module-screen h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 16px;
+}
+.listening-module-screen p {
+  font-size: 14px;
+  color: #666;
+  max-width: 480px;
+  line-height: 1.6;
+}
+
+/* Listening intro table */
+.listening-intro-table {
+  width: 100%;
+  max-width: 640px;
+  border-collapse: collapse;
+  margin: 16px auto;
+  font-size: 14px;
+}
+.listening-intro-table th {
+  text-align: left;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-bottom: 2px solid #ddd;
+  color: #333;
+}
+.listening-intro-table td {
+  padding: 10px 16px;
+  border-bottom: 1px solid #eee;
+  color: #555;
+}
+.listening-intro-table tr:last-child td {
+  border-bottom: 2px solid #ddd;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .listening-cr-layout,
+  .listening-context-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+  .listening-cr-image,
+  .listening-context-left {
+    flex: 0 0 auto;
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+    padding: 16px;
+  }
+  .listening-cr-options,
+  .listening-context-right {
+    width: 100%;
+    padding: 16px 24px;
+  }
+}
+
+
+/* =============================================================
+   EMAIL CARD — Structured email display for reading section
+   ============================================================= */
+.email-card {
+  border: 2px solid #00897b;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #ffffff;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =============================================================
+   NOTICE CARD — Simple bordered card for notice content
+   ============================================================= */
+.notice-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #ffffff;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.notice-card__body {
+  padding: 24px 20px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #333;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.email-card__header {
+  background: #f5fffe;
+  border-bottom: 1px solid #e0f2f1;
+  padding: 0;
+}
+.email-card__row {
+  display: flex;
+  border-bottom: 1px solid #e0f2f1;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.email-card__row:last-child {
+  border-bottom: none;
+}
+.email-card__label {
+  width: 90px;
+  min-width: 90px;
+  font-weight: 700;
+  color: #333;
+  padding: 8px 12px;
+  background: #e8f5f3;
+  border-right: 1px solid #e0f2f1;
+}
+.email-card__value {
+  padding: 8px 12px;
+  color: #444;
+  flex: 1;
+}
+
+.email-card__body {
+  padding: 20px 16px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #333;
+  white-space: pre-line;
+  overflow-y: auto;
+  flex: 1;
+}
+
+
+/* =============================================================
+   PHONE MOCKUP — Mobile chat display for text chains
+   ============================================================= */
+.phone-mockup {
+  width: 340px;
+  max-width: 100%;
+  background: #ffffff;
+  border: 2px solid #333;
+  border-radius: 32px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 160px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.phone-mockup__notch {
+  width: 100px;
+  height: 6px;
+  background: #333;
+  border-radius: 3px;
+  margin: 10px auto 8px;
+}
+
+.phone-mockup__chat {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 14px;
+  background: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.chat-message {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 10px 14px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+  max-width: 95%;
+}
+.chat-message__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4px;
+}
+.chat-message__sender {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+.chat-message__time {
+  font-size: 11px;
+  color: #999;
+}
+.chat-message__text {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #333;
+}
+
+/* Phone scrollbar */
+.phone-mockup__chat::-webkit-scrollbar {
+  width: 4px;
+}
+.phone-mockup__chat::-webkit-scrollbar-track {
+  background: transparent;
+}
+.phone-mockup__chat::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 2px;
+}
+
+/* Phone bottom bar */
+.phone-mockup__bottom {
+  height: 20px;
+  background: #ffffff;
+  border-top: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.phone-mockup__home-indicator {
+  width: 100px;
+  height: 4px;
+  background: #ccc;
+  border-radius: 2px;
+}
+
+
+/* =============================================================
+   READING HEADING — Task type headings above content
+   ============================================================= */
+.reading-task-heading {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-align: center;
+  padding: 16px 24px 8px;
+}
+
+
+/* =============================================================
+   TIME REMAINING PAGE — End of reading section (full test)
+   ============================================================= */
+.time-remaining {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 48px 32px;
+}
+.time-remaining h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+}
+.time-remaining p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #444;
+  margin-bottom: 16px;
+}
+.time-remaining hr {
+  width: 100%;
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 12px 0;
+}
+.time-remaining__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+
+/* =============================================================
+   RESPONSIVE — Tablet & phone overrides (no horizontal scroll,
+   stacked panes, compact toolbar, larger touch targets).
+   The test flow is identical to desktop; only the layout adapts.
+   ============================================================= */
+
+/* TABLET & SMALL LAPTOP (≤ 1024px): pane min-widths shrink so the
+   50/50 split still fits without overflow. */
+@media (max-width: 1024px) {
+  .test-panel--question,
+  .test-panel--passage {
+    min-width: 0;
+    padding: 22px 22px;
+  }
+  .test-panel--full {
+    padding: 28px 24px;
+  }
+  .listening-cr-options,
+  .listening-context-right {
+    padding: 20px 28px;
+  }
+  .speaking-panel {
+    padding: 24px 22px;
+  }
+}
+
+/* TABLET & MOBILE (≤ 860px): collapse all 50/50 split panes to a
+   stacked single-column layout. Reading passage shows on top, the
+   question follows below — same content, same flow. */
+@media (max-width: 860px) {
+  /* Reading & writing: every <div style="display:flex;flex:1;..."> wrapper
+     in the inline templates. Selector targets the test-content children. */
+  .test-content > div[style*="display: flex"],
+  .test-content > div[style*="display:flex"] {
+    flex-direction: column !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
+  .test-panel--passage,
+  .test-panel--question {
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--border-color);
+    padding: 18px 16px;
+  }
+  .test-panel--question {
+    border-bottom: none;
+    padding-bottom: 28px;
+  }
+  /* Vertical divider becomes a thin horizontal rule between panes. */
+  .test-divider {
+    width: 100% !important;
+    height: 1px;
+    flex: 0 0 auto;
+    cursor: default;
+  }
+  .test-divider::after {
+    display: none;
+  }
+
+  /* Inline-styled writing 50/50 splits (write-email + academic-discussion):
+     selector matches both prompt panel (left) and editor panel (right). */
+  .test-content > template ~ div > div[style*="flex:1 1 50%"],
+  .test-content > template ~ div > div[style*="flex: 1 1 50%"],
+  div[style*="flex:1 1 50%"][style*="min-width:360px"],
+  div[style*="flex: 1 1 50%"][style*="min-width:360px"],
+  div[style*="flex:1 1 50%"][style*="min-width: 360px"] {
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 22px 18px !important;
+  }
+
+  /* Listening already had this rule at 768px; raise to 860 for parity. */
+  .listening-cr-layout,
+  .listening-context-layout {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .listening-cr-image,
+  .listening-context-left {
+    flex: 0 0 auto;
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+    padding: 16px;
+  }
+  .listening-cr-options,
+  .listening-context-right {
+    width: 100%;
+    padding: 18px 20px;
+    justify-content: flex-start;
+  }
+  .listening-speaker-img,
+  .listening-context-img-side {
+    max-width: 320px;
+    max-height: 320px;
+  }
+  .listening-context-img {
+    max-width: 100%;
+    max-height: 50vh;
+  }
+
+  /* Full-width panel (CTW, listening question phase, writing intros):
+     remove the 860px max-width cap so it can fill the screen. */
+  .test-panel--full {
+    max-width: 100%;
+    padding: 22px 18px;
+  }
+
+  /* Compact reading-task heading on small screens. */
+  .reading-task-heading {
+    font-size: 17px;
+    padding: 10px 6px 6px;
+  }
+
+  /* Email card / notice card readability. */
+  .email-card__label {
+    width: 70px;
+    min-width: 70px;
+    padding: 6px 8px;
+    font-size: 13px;
+  }
+  .email-card__value {
+    padding: 6px 8px;
+    font-size: 13.5px;
+  }
+  .email-card__body,
+  .notice-card__body {
+    padding: 16px 14px;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  /* Phone-mockup (text-chain reading): center it and keep height bounded. */
+  .phone-mockup {
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+    max-height: 60vh;
+  }
+
+  /* Build-a-Sentence: keep the dialog readable. */
+  .bas-heading {
+    font-size: 18px;
+    padding: 16px 12px 0;
+  }
+  .bas-dialog {
+    padding: 18px 14px 32px;
+    gap: 18px;
+  }
+  .bas-row {
+    gap: 14px;
+    max-width: 100%;
+  }
+  .bas-avatar {
+    flex: 0 0 48px;
+    width: 48px;
+    height: 48px;
+  }
+  .bas-bubble {
+    font-size: 15px;
+    padding-top: 12px;
+    line-height: 1.6;
+  }
+  .bas-answer-line {
+    font-size: 15px;
+    line-height: 1.95;
+    width: 100%;
+  }
+  .bas-blank {
+    min-width: 80px;
+    font-size: 14px;
+  }
+  .bas-chunk-pool {
+    font-size: 15px;
+    gap: 10px 14px;
+    padding: 10px 4px 4px;
+  }
+
+  /* Discussion / write-email left column padding tightens. */
+  .disc-card__avatar {
+    flex: 0 0 52px;
+    width: 52px;
+    height: 52px;
+  }
+  .wr-email-heading,
+  .wr-email-task {
+    font-size: 15px;
+  }
+  .wr-email-situation,
+  .disc-professor-text,
+  .disc-card__text {
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  /* Writing intro pages (module intro, time-remaining, end-of-module). */
+  .writing-full-title {
+    font-size: 22px;
+  }
+  .writing-full-body {
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  /* Their wrapper uses inline padding 64px 48px — tighten on mobile. */
+  .test-content > template ~ div[style*="padding:64px 48px"],
+  .test-content > template ~ div[style*="padding: 64px 48px"] {
+    padding: 36px 20px !important;
+  }
+
+  /* Speaking scene image / video keep aspect ratio but stay within viewport. */
+  .speaking-panel {
+    padding: 18px 14px;
+  }
+  .speaking-panel .sr-frame {
+    max-width: 100%;
+  }
+  .speaking-panel .sr-video-wrap {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Notepad drawer: full-width sheet on mobile instead of 320px side panel. */
+  .notepad-drawer {
+    width: 100%;
+    top: 52px;
+    bottom: 0;
+    border-left: none;
+  }
+
+  /* Review panel grid (cancel/review modal) — denser grid for mobile. */
+  .test-review__grid {
+    grid-template-columns: repeat(auto-fill, minmax(38px, 1fr)) !important;
+    gap: 6px;
+  }
+}
+
+/* PHONE (≤ 640px): compact toolbar, larger tap targets, simpler chrome. */
+@media (max-width: 640px) {
+  /* Toolbar: shrink height and padding, smaller buttons, hide the
+     vertical separator. The exam timer + nav buttons stay visible. */
+  .test-toolbar,
+  .test-toolbar--reading,
+  .test-toolbar--listening {
+    height: 48px;
+    min-height: 48px;
+    padding: 0 6px;
+    gap: 4px;
+    overflow-x: auto;
+    /* Pin all toolbar children to a single row that scrolls horizontally
+       only if absolutely necessary — the trim below should prevent it. */
+    flex-wrap: nowrap;
+  }
+  .test-toolbar::-webkit-scrollbar { display: none; }
+
+  .test-toolbar__save-exit {
+    padding: 8px 10px;
+    font-size: 11.5px;
+    border-radius: 3px;
+    min-height: 38px;
+  }
+  /* Drop the secondary "Cancel exam" button text, leave a clear × icon.
+     Sized to a 40×38 hit target so users can reliably tap it (Apple HIG
+     minimum is 44; we use 40 to fit alongside the timer + nav buttons). */
+  .test-toolbar__save-exit + .test-toolbar__save-exit {
+    font-size: 0;
+    padding: 0;
+    width: 40px;
+    min-width: 40px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    position: relative;
+  }
+  .test-toolbar__save-exit + .test-toolbar__save-exit::after {
+    content: '×';
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1;
+    color: #fff;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none; /* let the click reach the button itself */
+  }
+
+  /* Hide the section label + question range on phones — the nav buttons,
+     timer, and the test content itself make this redundant. The bottom
+     of the test interface still shows progress in the Review modal. */
+  .test-toolbar__center-reading {
+    display: none !important;
+  }
+  .test-toolbar__right {
+    gap: 4px;
+  }
+
+  .test-timer {
+    font-size: 14px;
+    min-width: 46px;
+    letter-spacing: 0.5px;
+  }
+  /* Hide "Show Time / Hide Time" toggle on phones — timer is short, the
+     screen is small, hiding it adds little. Keeps the bar uncluttered. */
+  .test-toolbar__icon-btn {
+    display: none;
+  }
+  /* Listening volume button: keep visible, but compact. */
+  .listening-volume-btn {
+    display: inline-flex;
+    padding: 4px 8px;
+    font-size: 0;
+    gap: 0;
+  }
+  .listening-volume-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .test-toolbar__nav-btn {
+    padding: 5px 9px;
+    font-size: 12px;
+    min-height: 36px;
+  }
+  .test-toolbar__nav-btn svg {
+    width: 12px;
+    height: 12px;
+  }
+  .test-toolbar__nav-group {
+    gap: 3px;
+  }
+
+  /* Body content tweaks. */
+  .test-radio {
+    padding: 11px 12px;
+    min-height: 48px; /* Apple HIG / Material touch target */
+  }
+  .test-radio__label {
+    font-size: 14px;
+    line-height: 1.45;
+  }
+  .test-radio__circle {
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+  }
+
+  /* CTW (fill-in-letters) text on the active item: keep the inputs
+     comfortable to tap. */
+  .ctw-input {
+    font-size: inherit;
+  }
+
+  /* Writing editor: shrink the toolbar buttons but keep them tappable. */
+  .writing-editor-toolbar {
+    flex-wrap: wrap;
+    gap: 2px;
+    padding: 6px 6px;
+  }
+  .writing-editor-toolbar__btn {
+    padding: 6px 10px;
+    font-size: 12.5px;
+  }
+  .writing-editor-toolbar__wc {
+    font-size: 12px;
+    padding: 4px 6px;
+  }
+  .writing-editor-textarea {
+    padding: 14px 14px;
+    font-size: 16px; /* iOS focuses without zooming when ≥ 16px */
+    line-height: 1.6;
+    /* Stacked-pane mobile layout collapses the right pane to its content
+       height. Pin a comfortable typing area so the keyboard doesn't squash
+       the field to one or two lines. */
+    min-height: 55vh;
+  }
+  .writing-editor-card { min-height: 60vh; }
+  /* Discussion editor sits inside an inner column with its own padding —
+     ensure it isn't constrained by ancestor max-height/overflow rules. */
+  div[style*="max-height:48%"] { max-height: none !important; }
+
+  /* Writing intro/transition pages — keep typography readable. */
+  .writing-full-title {
+    font-size: 20px;
+  }
+  .writing-full-body {
+    font-size: 14.5px;
+  }
+
+  /* Listening intro table fits inside narrow viewports. */
+  .listening-intro-table {
+    font-size: 12.5px;
+  }
+  .listening-intro-table th,
+  .listening-intro-table td {
+    padding: 8px 10px;
+  }
+
+  /* Instruction card padding (system-check screen + instructions screen). */
+  .instruction-card {
+    padding: 28px 22px !important;
+    width: 92% !important;
+  }
+
+  /* Pause / cancel modals: better padding on small screens. */
+  .pause-overlay h2 {
+    font-size: 22px;
+  }
+
+  /* Speaking waveform / countdown — already centered, just shrink. */
+  .waveform-container {
+    height: 48px;
+    gap: 2px;
+  }
+  .waveform-bar {
+    width: 3px;
+  }
+}
+
+/* VERY SMALL PHONE (≤ 380px): final shrink for older / smaller devices. */
+@media (max-width: 380px) {
+  .test-toolbar__save-exit {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+  .test-toolbar__nav-btn {
+    padding: 4px 7px;
+    font-size: 11.5px;
+  }
+  .test-toolbar__question-range {
+    max-width: 90px;
+  }
+  .reading-task-heading {
+    font-size: 16px;
+  }
+  .test-radio__label {
+    font-size: 13.5px;
+  }
+}
+
+/* LANDSCAPE PHONE (≤ 480px wide AND short height): reduce vertical
+   padding so the question + options fit in the visible area without
+   excessive scrolling. */
+@media (max-height: 500px) and (max-width: 900px) {
+  .test-toolbar,
+  .test-toolbar--reading,
+  .test-toolbar--listening {
+    height: 42px;
+    min-height: 42px;
+  }
+  .test-panel--full {
+    padding: 14px 16px;
+  }
+  .test-panel--passage,
+  .test-panel--question {
+    padding: 14px 16px;
+  }
+  .listening-context-img,
+  .listening-context-img-side,
+  .listening-speaker-img {
+    max-height: 38vh;
+  }
+}
+
+
+/* =============================================================
+   MOBILE: LISTENING ANSWER OPTIONS MUST BE REACHABLE
+   =============================================================
+   Reported by a student on 2026-08-14: on a phone, the listening questions
+   showed "only 2 MCQ options ... and whether I changed screen orientation from
+   portrait to landscape the MCQ options changed from two to none."
+
+   Both listening panels are `.test-panel--full.listening-panel` carrying an
+   INLINE `overflow:hidden`, inside a `height:100%` flex column. On a phone the
+   layout stacks (image on top, options underneath) and the stack is taller than
+   the screen — so the last options were clipped, and because the clip came from
+   overflow:hidden rather than a scroll container THEY COULD NOT BE SCROLLED TO.
+   They were in the DOM, laid out, and unreachable.
+
+   Measured on the live site before this rule:
+
+     choose_response  @360x640   2 of 4 options reachable, 162px unreachable
+     conversation     @360x640   1 of 4 options reachable, 221px unreachable
+     choose_response  @812x375   1 of 4 options reachable, 161px unreachable
+
+   A student sitting a listening test on a phone was answering questions whose
+   remaining options they had never seen. The inline style is why the existing
+   768/860 stacking rules did not save them: those set flex-direction, and the
+   clipping was never the direction, it was the overflow.
+
+   Fixed in CSS rather than in the 80 test pages on purpose — the inline style
+   needs !important either way, and touching the pages' markup would put every
+   one of them through the SEO regression check for a change that alters no
+   text. Desktop is untouched: every rule here is inside a small-viewport query.
+   ============================================================= */
+
+/* A. The actual bug: on any small viewport the panel must SCROLL, not clip.
+      Kept separate from the cosmetic rules below because this one is the
+      difference between "awkward" and "cannot answer the question". */
+@media (max-width: 860px), (max-height: 600px) {
+  .listening-panel {
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  /* Let the stack take its natural height and overflow the scrollable panel,
+     instead of being squeezed into the remaining space and clipped. */
+  .listening-cr-layout,
+  .listening-context-layout {
+    flex: 0 0 auto;
+  }
+  /* Centring is right when everything fits and wrong when it does not: it
+     pushes the first option off the top of a scroll container. */
+  .listening-cr-options,
+  .listening-context-right {
+    justify-content: flex-start;
+  }
+}
+
+/* B. Narrow screens stack image-over-options, so the image is what pushes the
+      options off the screen. Capping it means the options usually fit with no
+      scrolling at all; rule A still guarantees they are reachable when they
+      do not. */
+@media (max-width: 860px) {
+  .listening-speaker-img,
+  .listening-context-img-side {
+    max-height: 26vh;
+  }
+  .listening-cr-image,
+  .listening-context-left {
+    padding: 10px 12px;
+  }
+}
+
+/* C. A landscape phone has width to spare and almost no height, so stacking is
+      exactly the wrong choice — it spends the scarce axis and wastes the roomy
+      one. Put the image back beside the options. This is the case the student
+      described as "none". */
+@media (max-height: 500px) and (min-width: 560px) {
+  .listening-cr-layout,
+  .listening-context-layout {
+    flex-direction: row;
+    align-items: stretch;
+  }
+  .listening-cr-image,
+  .listening-context-left {
+    flex: 0 0 38%;
+    width: auto;
+    border-right: 1px solid #ccc;
+    border-bottom: none;
+  }
+  .listening-speaker-img,
+  .listening-context-img-side {
+    max-height: 60vh;
+  }
+  .listening-cr-options,
+  .listening-context-right {
+    width: auto;
+    padding: 12px 18px;
+  }
+}
+
+
+/* =============================================================
+   ACADEMIC PASSAGE: A PARAGRAPH BREAK MUST LOOK LIKE ONE
+   =============================================================
+   Reported by Ludwig Pfeiffer on 2026-08-20: "the transition between
+   paragraph 2 and 3 almost looks like a normal line break. This has also
+   caused me to get the question wrong, because I thought there were only 3
+   instead of 4 paragraphs."
+
+   He was right, and the numbers say so plainly. renderPassageText() splits the
+   stored passage on \n\n and emits <p class="mb-4"> into a container styled
+   text-sm leading-[1.8]:
+
+       line height WITHIN a paragraph : 25.2px   (14px x 1.8)
+       gap BETWEEN paragraphs         : 16px     (mb-4)
+
+   The paragraph break was 0.63 of a line — SMALLER than the ordinary space
+   between two lines of the same paragraph — and there was no first-line indent
+   either, so nothing was left to signal the boundary but the prose itself.
+   That is not a matter of taste; a reader moving quickly merges the paragraphs,
+   which is exactly what happened.
+
+   WHY IT IS A CORRECTNESS BUG, NOT A STYLING ONE
+   85 question stems across the reading bank name a paragraph by number —
+   "the word consolidated in paragraph 2", "the relationship between paragraph 2
+   and paragraph 3", "the primary function of paragraph 3". Passage ap-1 has
+   four paragraphs; a student who counts three is answering a different
+   question. The item is meant to measure rhetorical structure and instead
+   measured paragraph-counting. The real TOEFL never asks anyone to count: it
+   marks the paragraph a question refers to.
+
+   SCOPED DELIBERATELY. .test-panel--passage is used by four different reading
+   layouts — email, notice, text chain and academic passage. Only the academic
+   passage renders through x-html="renderPassageText(...)", so the attribute
+   selector reaches it and leaves .email-card, .notice-card and .phone-mockup
+   untouched. Specificity (0,2,2) beats Tailwind's .mb-4 (0,1,0), so no
+   !important is needed.
+
+   Fixed here rather than in the 100 generated pages: the markup is identical on
+   all of them, no page text changes, and nothing goes near the SEO check for an
+   edit that alters no words.
+
+   Related dead code, left alone on purpose: .test-passage__body (never applied
+   to any page) and .test-passage__para--highlighted, which was written to mark
+   the referenced paragraph the way the real exam does. Wiring that up needs a
+   paragraphRef field on the question data and is a separate piece of work.
+   ============================================================= */
+.test-panel--passage > div[x-html] > p {
+  /* Comfortably more than one 25.2px line, so the break reads as a break. */
+  margin-bottom: 28px;
+  /* A second, independent signal, so a rushed reader cannot miss it. */
+  text-indent: 24px;
+}
+.test-panel--passage > div[x-html] > p:first-child {
+  text-indent: 0;
+}
+
+/*
+ * The System Check spinners (screen, audio, microphone, storage) on all 101 test
+ * pages use Tailwind's border-t-blue-500, which does not exist in this build:
+ * tailwind.config.js sets colors.blue to the brand #005bff, and that replaces
+ * Tailwind's whole blue scale, so blue-500 was never generated. The spinning top
+ * segment fell back to border-gray-300, a uniformly grey ring whose rotation is
+ * invisible, so the check looked frozen. Restores the colour the markup names:
+ * Tailwind's default blue-500. Written in the build's own format. This file loads
+ * after tailwind.css, so it wins on the top edge only.
+ */
+.border-t-blue-500 {
+  --tw-border-opacity: 1;
+  border-top-color: rgb(59 130 246 / var(--tw-border-opacity, 1));
+}
+
+/* Shared non-test phases. These screens sit outside .test-interface, so they
+   need their own foundation instead of relying on incidental Tailwind classes. */
+.instruction-screen,
+.complete-screen,
+.scoring-screen,
+.pause-overlay {
+  min-height: 100vh;
+  min-height: 100dvh;
+  box-sizing: border-box;
+  font-family: var(--font-main);
+}
+.idle-screen {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+}
+.instruction-screen,
+.complete-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: #e8e8e8;
+}
+.instruction-card {
+  width: min(680px, 100%);
+  max-height: calc(100dvh - 48px);
+  overflow: auto;
+  padding: 36px 40px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, .12);
+}
+.pause-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+  color: #fff;
+  background: rgba(15, 23, 42, .92);
+}
+.scoring-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  background: #0f2747;
+}
+.score-ring {
+  width: 56px;
+  height: 56px;
+  border: 5px solid rgba(255, 255, 255, .25);
+  border-top-color: #34d399;
+  border-radius: 50%;
+  animation: loading-spin .8s linear infinite;
+}
+.audio-progress-track { height: 6px; overflow: hidden; background: #dbe4ef; border-radius: 999px; }
+.audio-progress-fill { height: 100%; background: var(--selected-blue); transition: width .2s linear; }
+.notepad-drawer {
+  position: fixed;
+  top: 52px;
+  right: 0;
+  bottom: 0;
+  z-index: 400;
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  background: #fffef0;
+  border-left: 1px solid #d6c878;
+  box-shadow: -4px 0 18px rgba(0, 0, 0, .15);
+}
+.notepad-drawer textarea { flex: 1; min-height: 0; padding: 14px; border: 0; outline: 0; resize: none; font: 14px/1.5 var(--font-main); background: transparent; }
+.bas-heading { padding: 28px 36px 0; font-size: 21px; font-weight: 700; color: #1f2937; }
+.bas-dialog { display: flex; flex: 1; flex-direction: column; justify-content: center; gap: 26px; width: min(760px, 100%); margin: 0 auto; padding: 32px 36px 48px; }
+.bas-row { display: flex; align-items: flex-start; gap: 18px; }
+.bas-avatar { flex: 0 0 58px; width: 58px; height: 58px; overflow: hidden; border-radius: 50%; background: #e2e8f0; }
+.bas-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.bas-bubble, .bas-answer-line { font-size: 16px; line-height: 1.8; color: #1f2937; }
+.bas-bubble { padding: 12px 16px; background: #eff6ff; border-radius: 12px; }
+.bas-answer-line { flex: 1; }
+.bas-blank { display: inline-flex; min-width: 100px; min-height: 34px; margin: 2px; padding: 1px 6px; cursor: pointer; border-bottom: 2px solid #64748b; color: #1d4ed8; }
+.bas-blank--empty { color: #94a3b8; }
+.bas-chunk-pool { display: flex; flex-wrap: wrap; gap: 10px 16px; padding: 18px; border: 1px solid #cbd5e1; border-radius: 8px; }
+.bas-chunk { padding: 6px 9px; cursor: grab; border-radius: 4px; background: #e8f0fe; color: #1e3a8a; user-select: none; }
+.bas-chunk--used { opacity: .38; cursor: default; }
+.bas-chunk-separator { color: #94a3b8; }
+.writing-editor-card { display: flex; flex: 1; min-height: 0; flex-direction: column; border: 1px solid #cbd5e1; border-radius: 8px; overflow: hidden; }
+.writing-editor-head, .writing-editor-toolbar { padding: 9px 12px; background: #f8fafc; border-bottom: 1px solid #cbd5e1; }
+.writing-editor-head__row { display: flex; gap: 8px; font-size: 13px; }
+.writing-editor-head__label { min-width: 58px; font-weight: 700; color: #475569; }
+.writing-editor-toolbar { display: flex; align-items: center; gap: 6px; }
+.writing-editor-toolbar__btn, .writing-editor-toolbar__eye { padding: 4px 8px; cursor: pointer; border: 1px solid #94a3b8; border-radius: 4px; background: #fff; color: #334155; }
+.writing-editor-toolbar__spacer { flex: 1; }
+.writing-editor-toolbar__wc { font-size: 12px; color: #475569; }
+.writing-editor-body { display: flex; flex: 1; min-height: 0; }
+.writing-editor-textarea { flex: 1; min-height: 280px; padding: 16px; border: 0; outline: 0; resize: none; font: 15px/1.65 var(--font-mono); }
+.wr-email-heading, .writing-full-title { margin: 0 0 16px; font-size: 24px; font-weight: 700; color: #1f2937; }
+.wr-email-situation, .wr-email-task, .writing-full-body { line-height: 1.7; color: #334155; }
+.wr-email-bullets, .disc-bullets { margin: 14px 0; padding-left: 20px; line-height: 1.7; color: #334155; }
+.wr-email-note, .disc-note, .writing-full-hint { margin-top: 18px; font-size: 13px; color: #64748b; }
+.disc-topic-intro, .disc-lead { margin-bottom: 12px; line-height: 1.7; color: #334155; }
+.disc-card { display: flex; gap: 12px; margin-bottom: 12px; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; }
+.disc-card__avatar { flex: 0 0 48px; width: 48px; height: 48px; overflow: hidden; border-radius: 50%; background: #e2e8f0; }
+.disc-card__avatar img { width: 100%; height: 100%; object-fit: cover; }
+.disc-card__body { min-width: 0; }
+.disc-card__name { margin-bottom: 3px; font-weight: 700; color: #1f2937; }
+.disc-card__text, .disc-professor-text { line-height: 1.6; color: #475569; }
+.writing-full-rule { margin: 0 0 22px; border: 0; border-top: 1px solid #cbd5e1; }
+.writing-inline-link { color: #2563eb; font-weight: 600; }
+.rec-dot { width: 10px; height: 10px; border-radius: 50%; background: #dc2626; animation: recording-pulse 1.2s ease-in-out infinite; }
+.waveform-container { display: flex; align-items: center; height: 60px; gap: 3px; }
+.waveform-bar { width: 4px; min-height: 5px; background: #dc2626; border-radius: 99px; transition: height .1s; }
+.mic-warning { max-width: 540px; padding: 10px 12px; color: #92400e; background: #fffbeb; border: 1px solid #fcd34d; border-radius: 6px; font-size: 13px; }
+/* Keep missing letters attached to their stem. The transparent input overlays
+   the dash row rather than adding a second, invisible inline field before it. */
+.ctw-word { display: inline-flex; align-items: baseline; white-space: nowrap; vertical-align: baseline; }
+.ctw-slot { position: relative; display: inline-block; font-family: var(--font-mono); font-size: 16px; line-height: 1.6; }
+.ctw-dashes { display: block; padding: 0 2px; white-space: pre; color: #64748b; }
+.test-interface .ctw-input {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  min-width: 0;
+  max-width: none;
+  padding: 0 2px;
+  border: 0;
+  border-radius: 2px;
+  background: transparent;
+  color: #1d4ed8;
+  font: inherit;
+  letter-spacing: 1ch;
+  line-height: inherit;
+  z-index: 1;
+  box-sizing: border-box;
+}
+.ctw-input:focus { background: rgba(37, 99, 235, .06); }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+}

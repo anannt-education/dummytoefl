@@ -1,0 +1,291 @@
+/**
+ * TOEFL Writing Practice Test 15 — 2026 format
+ */
+window.WRITING_SECTION_15 = {
+  id: 'writing-test-15',
+  title: 'TOEFL Writing Practice Test 15',
+  format: '2026',
+
+  buildASentence: [
+    {
+      id: 'w15-bas-1',
+      type: 'build_a_sentence',
+      prompt: 'Make an appropriate sentence.',
+      context: 'Two students are checking the schedule for a department picnic.',
+      speakerName: 'Imogen',
+      speakerImage: 'female-1.webp',
+      speakerLine: 'Are you bringing anything to the picnic this weekend?',
+      respondentName: 'Sebi',
+      respondentImage: 'male-1.webp',
+      answerPrefix: 'I\'m still',
+      answerSuffix: '.',
+      numBlanks: 7,
+      wordChunks: ['or', 'deciding', 'make', 'to', 'salad', 'decides', 'pasta', 'whether'],
+      correctOrder: ['deciding', 'whether', 'to', 'make', 'pasta', 'or', 'salad'],
+      acceptedOrders: [
+        ['deciding', 'whether', 'to', 'make', 'salad', 'or', 'pasta']
+      ],
+      extraWord: 'decides',
+      correctSentence: "I\'m still deciding whether to make pasta or salad.",
+      grammarPattern: 'present_continuous_with_embedded_whether',
+      explanation: "The correct sentence is “I'm still deciding whether to make pasta or salad.” This is an embedded (indirect) question, so after the question word you keep statement word order (subject then verb), not question inversion. “Salad or pasta” is accepted too: the two options joined by “or” are alternatives of equal weight, so nothing in the sentence fixes their order. The word “decides” is an extra distractor that does not belong in the answer.",
+      points: 1
+    },
+    {
+      id: 'w15-bas-2',
+      type: 'build_a_sentence',
+      prompt: 'Make an appropriate sentence.',
+      context: 'A student is meeting with the writing center director.',
+      speakerName: 'Director Kane',
+      speakerImage: 'male-2.webp',
+      speakerLine: 'How is your application essay coming along?',
+      respondentName: 'Sasha',
+      respondentImage: 'female-2.webp',
+      answerPrefix: 'I plan',
+      answerSuffix: '.',
+      numBlanks: 7,
+      wordChunks: ['edits', 'rounds', 'two', 'more', 'the deadline', 'of', 'before', 'planning'],
+      correctOrder: ['two', 'more', 'rounds', 'of', 'edits', 'before', 'the deadline'],
+      extraWord: 'planning',
+      correctSentence: "I plan two more rounds of edits before the deadline.",
+      grammarPattern: 'present_simple_with_quantifier',
+      explanation: "The correct sentence is “I plan two more rounds of edits before the deadline.” The quantifier (some, many, a few, most) comes right before the noun it measures. The word “planning” is an extra distractor that does not belong in the answer.",
+      points: 1
+    },
+    {
+      id: 'w15-bas-3',
+      type: 'build_a_sentence',
+      prompt: 'Make an appropriate sentence.',
+      context: 'Two students are talking about an upcoming hiking trip.',
+      speakerName: 'Mateo',
+      speakerImage: 'male-3.webp',
+      speakerLine: 'Have you broken in your new boots yet?',
+      respondentName: 'Lara',
+      respondentImage: 'female-3.webp',
+      answerPrefix: 'I\'ll',
+      answerSuffix: '.',
+      numBlanks: 7,
+      wordChunks: ['the trip', 'tries', 'weekend', 'them', 'on', 'before', 'try', 'next'],
+      correctOrder: ['try', 'them', 'on', 'next', 'weekend', 'before', 'the trip'],
+      acceptedOrders: [
+        ['try', 'them', 'on', 'before', 'the trip', 'next', 'weekend']
+      ],
+      extraWord: 'tries',
+      correctSentence: "I\'ll try them on next weekend before the trip.",
+      grammarPattern: 'future_with_phrasal_verb',
+      explanation: "The correct sentence is “I'll try them on next weekend before the trip.” The future (will or be going to) is followed by the base form of the verb, with any time phrase at the end. The word “tries” is an extra distractor that does not belong in the answer.",
+      points: 1
+    },
+    {
+      id: 'w15-bas-4',
+      type: 'build_a_sentence',
+      prompt: 'Make an appropriate sentence.',
+      context: 'A student is signing in at the campus volunteer day.',
+      speakerName: 'Volunteer Lead',
+      speakerImage: 'female-4.webp',
+      speakerLine: 'Have you done outdoor cleanup work before?',
+      respondentName: 'Mason',
+      respondentImage: 'male-4.webp',
+      answerPrefix: 'I should',
+      answerSuffix: '.',
+      numBlanks: 7,
+      wordChunks: ['last', 'afternoon', 'lasting', 'the', 'able', 'until', 'to', 'be'],
+      correctOrder: ['be', 'able', 'to', 'last', 'until', 'the', 'afternoon'],
+      extraWord: 'lasting',
+      correctSentence: "I should be able to last until the afternoon.",
+      grammarPattern: 'modal_with_object_clause',
+      explanation: "The correct sentence is “I should be able to last until the afternoon.” A modal verb (can, should, must, would, will) is always followed by the base form of the next verb. The word “lasting” is an extra distractor that does not belong in the answer.",
+      points: 1
+    },
+    {
+      id: 'w15-bas-5',
+      type: 'build_a_sentence',
+      prompt: 'Make an appropriate sentence.',
+      context: 'A student is asking the campus health desk about flu shots.',
+      speakerName: 'Health Staff',
+      speakerImage: 'male-5.webp',
+      speakerLine: 'Have you scheduled an appointment for the flu shot?',
+      respondentName: 'Dora',
+      respondentImage: 'female-5.webp',
+      answerPrefix: 'Is there',
+      answerSuffix: '?',
+      numBlanks: 6,
+      wordChunks: ['at noon', 'tomorrow', 'opens', 'available', 'appointment', 'open', 'an'],
+      correctOrder: ['an', 'open', 'appointment', 'available', 'tomorrow', 'at noon'],
+      acceptedOrders: [
+        ['an', 'open', 'appointment', 'available', 'at noon', 'tomorrow']
+      ],
+      extraWord: 'opens',
+      correctSentence: "Is there an open appointment available tomorrow at noon?",
+      grammarPattern: 'yes_no_with_existential',
+      explanation: "The correct sentence is “Is there an open appointment available tomorrow at noon?” This begins with there is or there are, or with an auxiliary verb for a yes/no question. The word “opens” is an extra distractor that does not belong in the answer.",
+      points: 1
+    },
+    {
+      id: 'w15-bas-6',
+      type: 'build_a_sentence',
+      prompt: 'Make an appropriate sentence.',
+      context: 'A student is calling about a campus housing application.',
+      speakerName: 'Housing Office',
+      speakerImage: 'female-6.webp',
+      speakerLine: 'Why are you requesting to switch buildings?',
+      respondentName: 'Adir',
+      respondentImage: 'male-6.webp',
+      answerPrefix: 'I have',
+      answerSuffix: '.',
+      numBlanks: 6,
+      wordChunks: ['several', 'made', 'noise', 'about', 'complaints', 'making', 'my room'],
+      correctOrder: ['made', 'several', 'noise', 'complaints', 'about', 'my room'],
+      extraWord: 'making',
+      correctSentence: "I have made several noise complaints about my room.",
+      grammarPattern: 'present_perfect_with_object',
+      explanation: "The correct sentence is “I have made several noise complaints about my room.” Present perfect uses have or has plus the past participle to connect a past action to the present. The word “making” is an extra distractor that does not belong in the answer.",
+      points: 1
+    },
+    {
+      id: 'w15-bas-7',
+      type: 'build_a_sentence',
+      prompt: 'Make an appropriate sentence.',
+      context: 'Two friends are deciding which film to attend at a campus festival.',
+      speakerName: 'Vivian',
+      speakerImage: 'female-1.webp',
+      speakerLine: 'Which movie are you most excited about?',
+      respondentName: 'Pierre',
+      respondentImage: 'male-2.webp',
+      answerPrefix: 'I\'m most excited about',
+      answerSuffix: '.',
+      numBlanks: 6,
+      wordChunks: ['opening night', 'Brazilian', 'showing', 'the', 'documenting', 'on', 'documentary'],
+      correctOrder: ['the', 'Brazilian', 'documentary', 'showing', 'on', 'opening night'],
+      extraWord: 'documenting',
+      correctSentence: "I\'m most excited about the Brazilian documentary showing on opening night.",
+      grammarPattern: 'superlative_present_simple',
+      explanation: "The correct sentence is “I'm most excited about the Brazilian documentary showing on opening night.” The superlative uses the plus an -est ending, or the plus most and the adjective. The word “documenting” is an extra distractor that does not belong in the answer.",
+      points: 1
+    },
+    {
+      id: 'w15-bas-8',
+      type: 'build_a_sentence',
+      prompt: 'Make an appropriate sentence.',
+      context: 'A student is calling the IT desk about a stuck print job.',
+      speakerName: 'IT Staff',
+      speakerImage: 'female-3.webp',
+      speakerLine: 'How long ago did the print job stop responding?',
+      respondentName: 'Bram',
+      respondentImage: 'male-1.webp',
+      answerPrefix: 'It froze',
+      answerSuffix: '.',
+      numBlanks: 7,
+      wordChunks: ['about', 'minutes', 'ten', 'twelve', 'around', 'pages', 'ago', 'page'],
+      correctOrder: ['around', 'page', 'twelve', 'about', 'ten', 'minutes', 'ago'],
+      extraWord: 'pages',
+      correctSentence: "It froze around page twelve about ten minutes ago.",
+      grammarPattern: 'past_simple_with_time_phrase',
+      explanation: "The correct sentence is “It froze around page twelve about ten minutes ago.” When one adverbial of place and one of time follow the same verb, English puts place before time: “It froze [where] around page twelve [when] about ten minutes ago.” Reversing them to “about ten minutes ago around page twelve” leaves the time phrase stranded before the place phrase, which is why it reads as unfinished even though every word is present. The word “pages” is an extra distractor that does not belong in the answer.",
+      points: 1
+    },
+    {
+      id: 'w15-bas-9',
+      type: 'build_a_sentence',
+      prompt: 'Make an appropriate sentence.',
+      context: 'Two students are discussing a class trip.',
+      speakerName: 'Bea',
+      speakerImage: 'female-4.webp',
+      speakerLine: 'Did you sign up for the museum trip?',
+      respondentName: 'Joaquin',
+      respondentImage: 'male-4.webp',
+      answerPrefix: 'I did,',
+      answerSuffix: '.',
+      numBlanks: 7,
+      wordChunks: ['nothing', 'professor', 'yet', 'although', 'says', 'said', 'has', 'the'],
+      correctOrder: ['although', 'the', 'professor', 'has', 'said', 'nothing', 'yet'],
+      extraWord: 'says',
+      correctSentence: "I did, although the professor has said nothing yet.",
+      grammarPattern: 'present_perfect_with_negative_object',
+      explanation: "The correct sentence is “I did, although the professor has said nothing yet.” Present perfect uses have or has plus the past participle to connect a past action to the present. The word “says” is an extra distractor that does not belong in the answer.",
+      points: 1
+    },
+    {
+      id: 'w15-bas-10',
+      type: 'build_a_sentence',
+      prompt: 'Make an appropriate sentence.',
+      context: 'A student is asking the academic advisor about a minor.',
+      speakerName: 'Advisor Tan',
+      speakerImage: 'female-5.webp',
+      speakerLine: 'Are you considering adding a minor before graduation?',
+      respondentName: 'Henrik',
+      respondentImage: 'male-5.webp',
+      answerPrefix: 'Could you',
+      answerSuffix: '?',
+      numBlanks: 7,
+      wordChunks: ['knows', 'me', 'still required', 'classes', 'tell', 'many', 'how', 'are'],
+      correctOrder: ['tell', 'me', 'how', 'many', 'classes', 'are', 'still required'],
+      extraWord: 'knows',
+      correctSentence: "Could you tell me how many classes are still required?",
+      grammarPattern: 'embedded_how_many',
+      explanation: "The correct sentence is “Could you tell me how many classes are still required?” This is an embedded (indirect) question, so after the question word you keep statement word order (subject then verb), not question inversion. The word “knows” is an extra distractor that does not belong in the answer.",
+      points: 1
+    }
+  ],
+
+  writeAnEmail: {
+    id: 'w15-email-1',
+    type: 'write_email',
+    directions: 'You have seven minutes to read the situation and write your email. Aim for about 100 to 150 words. Be sure to address every point in the prompt.',
+    situation: 'You are the secretary of a small student club. The campus office in charge of room reservations sent your club a notice saying that your weekly Tuesday meeting room has been reassigned to another group, with no replacement offered. You have already advertised the room number on flyers and social media for the meeting next Tuesday.',
+    taskInstructions: 'Write an email to the room reservations office. In your email, do each of the following:',
+    requiredPoints: [
+      'Identify the club, the meeting day, and the room you have been using.',
+      'Explain why the change creates a real problem for your members.',
+      'Ask for a room of similar size at the same time, or for help notifying members of any new location.'
+    ],
+    recipient: 'roomreservations@state.edu',
+    subject: 'Tuesday meeting room reassignment',
+    writeTime: 420,
+    targetWords: { min: 100, max: 150 },
+    scoringRubric: {
+      5: 'Fully addresses all three prompt points with a clear purpose, appropriate greeting and closing, and a consistently polite, respectful tone. Demonstrates sentence variety, accurate grammar, and precise, well-chosen vocabulary throughout.',
+      4: 'Addresses all three points adequately with a generally appropriate tone. Minor grammar or word-choice issues do not impede understanding. Organization is logical and greeting/closing are present.',
+      3: 'Addresses most points but one may be vague or underdeveloped. Tone is mostly suitable; noticeable grammar or vocabulary problems occur but the overall message remains understandable.',
+      2: 'Partially addresses the prompt. Notable problems with completeness, register, or grammar. Missing greeting or closing, or one point omitted.',
+      1: 'Minimally addresses the situation. Serious language errors make portions of the message hard to understand, or two or more required points are missing.',
+      0: 'Off-topic, blank, copied verbatim from the prompt, or written in a language other than English.'
+    }
+  },
+
+  academicDiscussion: {
+    id: 'w15-disc-1',
+    type: 'academic_discussion',
+    topicIntro: 'Your professor is teaching a class on technology and ethics. Write a post responding to the professor\u2019s question.',
+    directions: 'In your response, you should express and support your opinion and make a contribution to the discussion in your own words. An effective response will contain at least 100 words.',
+    professorPrompt: {
+      name: 'Professor Adeyemi',
+      image: 'male-2.webp',
+      text: 'This week we are examining facial recognition technology. Police departments and stadium operators are starting to use it for security, while privacy advocates worry about constant surveillance and bias in the systems. Some cities have banned the technology in public spaces, while others use it widely. Should governments and businesses be allowed to use facial recognition in public spaces, or should it be banned by default?'
+    },
+    studentResponses: [
+      {
+        name: 'Tomas',
+        image: 'male-3.webp',
+        text: 'I support a default ban with narrow exceptions. Studies have repeatedly shown that facial recognition misidentifies women and people of color at much higher rates than white men, leading to wrongful stops and arrests. Once it is widely deployed, walking through any public space becomes a search. Cities like San Francisco have shown that limiting use is workable while still investigating crimes through traditional methods.'
+      },
+      {
+        name: 'Hannah',
+        image: 'female-2.webp',
+        text: 'I think facial recognition should be allowed under strict rules. Used carefully, it has helped police identify suspects in serious crimes faster than any traditional method. The fix to bias is to require accuracy testing before deployment, not to abandon the tool entirely. Public oversight, mandatory transparency reports, and independent audits would let us benefit from the technology without losing privacy protections.'
+      }
+    ],
+    writeTime: 600,
+    targetWords: { min: 100 },
+    scoringRubric: {
+      5: 'A fully successful response. A clear, well-elaborated contribution with a strong opinion that engages meaningfully with the discussion. Well-organized and coherent, with varied sentence structure, accurate grammar, and precise vocabulary.',
+      4: 'A generally successful response. Relevant contribution with an opinion supported by reasons or examples. Adequate development and organization. Occasional minor language errors do not obscure meaning.',
+      3: 'A partially successful response. Contribution is mostly on topic but may lack depth or specific examples. Some organizational issues and noticeable grammar or vocabulary errors, but meaning is generally clear.',
+      2: 'A mostly unsuccessful response. Limited relevance or development, weak organization, and frequent errors that sometimes obscure meaning.',
+      1: 'An unsuccessful response. Largely irrelevant, undeveloped, or incoherent, with severe and persistent language errors.',
+      0: 'Blank, off-topic, not in English, or copied from the prompt.'
+    }
+  }
+};
+
+window.WRITING_TEST_15 = window.WRITING_SECTION_15;

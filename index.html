@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>TOEFL Practice Tests</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<script src="data/test-registry.js" defer></script>
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;background:#f3f4f6;color:#111}
+.wrap{max-width:760px;margin:0 auto;padding:32px 16px 64px}
+h1{font-size:24px;margin:0 0 4px}h2{font-size:17px;margin:28px 0 10px}
+.sub{color:#666;font-size:14px;margin:0 0 16px}
+.top{display:flex;justify-content:space-between;align-items:baseline}
+a.scores{font-size:14px;color:#2563eb}
+ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+li a{display:flex;justify-content:space-between;gap:12px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:10px 14px;text-decoration:none;color:#111;font-size:15px}
+li a:hover{border-color:#2563eb}
+li a small{color:#888;white-space:nowrap}
+.done{color:#16a34a;font-size:12px;font-weight:700}
+details{margin:0 0 10px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden}
+summary{padding:12px 14px;cursor:pointer;font-size:15px;font-weight:700}details[open] summary{border-bottom:1px solid #e5e7eb}
+details ul{padding:8px}details li a{border-color:transparent;background:#f9fafb}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top"><h1>TOEFL Practice Tests</h1><a class="scores" href="scores.html">My scores</a></div>
+<p class="sub">Free. Timed. Objective scores and your work are saved in this browser only.</p>
+<h2>Section practice</h2>
+<div id="sections"></div>
+<h2>Full tests &middot; 120 questions &middot; 90 min &middot; all 4 sections</h2>
+<ul id="full"></ul>
+</div>
+<script>
+window.addEventListener('DOMContentLoaded', function () {
+  var done = {};
+  try { (JSON.parse(localStorage.getItem('toefl_results') || '[]')).forEach(function (r) { if (r.testId) done[r.testId] = 1; }); } catch (e) {}
+  function link(t, extra) {
+    var a = document.createElement('a');
+    a.href = 'test.html?t=' + encodeURIComponent(t.id);
+    var s = document.createElement('span'); s.textContent = t.title + (done[t.id] ? ' ✓' : '');
+    if (done[t.id]) s.className = 'done';
+    var d = document.createElement('small'); d.textContent = extra;
+    a.appendChild(s); a.appendChild(d);
+    var li = document.createElement('li'); li.appendChild(a); return li;
+  }
+  var R = window.TEST_REGISTRY || {};
+  (R.fullTests || []).forEach(function (t) { document.getElementById('full').appendChild(link(t, 'Test ' + t.position)); });
+  var sections = document.getElementById('sections');
+  Object.keys(R.sectionTests || {}).forEach(function (name) {
+    var group = document.createElement('details');
+    var heading = document.createElement('summary');
+    heading.textContent = name.charAt(0).toUpperCase() + name.slice(1) + ' practice tests';
+    var list = document.createElement('ul');
+    (R.sectionTests[name] || []).forEach(function (t) {
+      var item = link(t, t.questions + ' questions · ' + t.duration + ' min');
+      item.querySelector('a').href = 'test.html?t=' + encodeURIComponent(t.id);
+      list.appendChild(item);
+    });
+    group.appendChild(heading); group.appendChild(list); sections.appendChild(group);
+  });
+});
+</script>
+</body>
+</html>

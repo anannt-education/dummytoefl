@@ -1,0 +1,290 @@
+/**
+ * TOEFL Writing Practice Test 9 — 2026 format
+ */
+window.WRITING_SECTION_9 = {
+  id: 'writing-test-9',
+  title: 'TOEFL Writing Practice Test 9',
+  format: '2026',
+
+  buildASentence: [
+    {
+      id: 'w9-bas-1',
+      type: 'build_a_sentence',
+      prompt: 'Make an appropriate sentence.',
+      context: 'Two students are walking out of a study session.',
+      speakerName: 'Bahar',
+      speakerImage: 'female-1.webp',
+      speakerLine: 'Did you understand the chapter on memory consolidation?',
+      respondentName: 'Lev',
+      respondentImage: 'male-1.webp',
+      answerPrefix: 'I\'ll',
+      answerSuffix: '.',
+      numBlanks: 7,
+      wordChunks: ['go', 'diagram', 'over', 'one', 'the', 'more', 'goes', 'time'],
+      correctOrder: ['go', 'over', 'the', 'diagram', 'one', 'more', 'time'],
+      extraWord: 'goes',
+      correctSentence: "I\'ll go over the diagram one more time.",
+      grammarPattern: 'future_with_phrasal_verb',
+      explanation: "The correct sentence is “I'll go over the diagram one more time.” The future (will or be going to) is followed by the base form of the verb, with any time phrase at the end. The word “goes” is an extra distractor that does not belong in the answer.",
+      points: 1
+    },
+    {
+      id: 'w9-bas-2',
+      type: 'build_a_sentence',
+      prompt: 'Make an appropriate sentence.',
+      context: 'A student is checking out a camera at the media office.',
+      speakerName: 'Media Staff',
+      speakerImage: 'male-2.webp',
+      speakerLine: 'Have you used a DSLR camera before?',
+      respondentName: 'Mara',
+      respondentImage: 'female-2.webp',
+      answerPrefix: 'I',
+      answerSuffix: '.',
+      numBlanks: 7,
+      wordChunks: ['tutorials', 'before', 'quick', 'might', 'a', 'leaving', 'tutorial', 'need'],
+      correctOrder: ['might', 'need', 'a', 'quick', 'tutorial', 'before', 'leaving'],
+      extraWord: 'tutorials',
+      correctSentence: "I might need a quick tutorial before leaving.",
+      grammarPattern: 'modal_with_infinitive',
+      explanation: "The correct sentence is “I might need a quick tutorial before leaving.” A modal verb (can, should, must, would, will) is always followed by the base form of the next verb. The word “tutorials” is an extra distractor that does not belong in the answer.",
+      points: 1
+    },
+    {
+      id: 'w9-bas-3',
+      type: 'build_a_sentence',
+      prompt: 'Make an appropriate sentence.',
+      context: 'Two students are negotiating roommate ground rules.',
+      speakerName: 'Vincent',
+      speakerImage: 'male-3.webp',
+      speakerLine: 'Should we set quiet hours after ten?',
+      respondentName: 'Inara',
+      respondentImage: 'female-3.webp',
+      answerPrefix: 'Let\'s',
+      answerSuffix: '.',
+      numBlanks: 6,
+      wordChunks: ['eleven', 'on', 'it', 'making', 'weekends', 'instead', 'make'],
+      correctOrder: ['make', 'it', 'eleven', 'on', 'weekends', 'instead'],
+      extraWord: 'making',
+      correctSentence: "Let\'s make it eleven on weekends instead.",
+      grammarPattern: 'imperative_with_object',
+      explanation: "The correct sentence is “Let's make it eleven on weekends instead.” The imperative starts with the base verb and has no subject. The word “making” is an extra distractor that does not belong in the answer.",
+      points: 1
+    },
+    {
+      id: 'w9-bas-4',
+      type: 'build_a_sentence',
+      prompt: 'Make an appropriate sentence.',
+      context: 'A student is asking for advice from a senior classmate.',
+      speakerName: 'Felicia',
+      speakerImage: 'female-4.webp',
+      speakerLine: 'How did you prepare for the qualifying exam last year?',
+      respondentName: 'Andre',
+      respondentImage: 'male-4.webp',
+      answerPrefix: 'I built',
+      answerSuffix: '.',
+      numBlanks: 6,
+      wordChunks: ['with', 'questions', 'study', 'plan', 'include', 'practice', 'a'],
+      correctOrder: ['a', 'study', 'plan', 'with', 'practice', 'questions'],
+      extraWord: 'include',
+      correctSentence: "I built a study plan with practice questions.",
+      grammarPattern: 'past_simple_with_modifier',
+      explanation: "The correct sentence is “I built a study plan with practice questions.” Standard English word order applies here: subject, then verb, then object, with any time or place phrase at the end. The word “include” is an extra distractor that does not belong in the answer.",
+      points: 1
+    },
+    {
+      id: 'w9-bas-5',
+      type: 'build_a_sentence',
+      prompt: 'Make an appropriate sentence.',
+      context: 'Two students are checking the schedule for student government elections.',
+      speakerName: 'Marsha',
+      speakerImage: 'female-5.webp',
+      speakerLine: 'When does the campaign window officially open?',
+      respondentName: 'Gus',
+      respondentImage: 'male-5.webp',
+      answerPrefix: 'Campaigning',
+      answerSuffix: '.',
+      numBlanks: 6,
+      wordChunks: ['begins', 'opens', 'voting', 'before', 'Monday', 'a week', 'on'],
+      correctOrder: ['begins', 'on', 'Monday', 'a week', 'before', 'voting'],
+      extraWord: 'opens',
+      correctSentence: "Campaigning begins on Monday a week before voting.",
+      grammarPattern: 'present_simple_with_time_phrase',
+      explanation: "The correct sentence is “Campaigning begins on Monday a week before voting.” The time expression (when, before, after, while, or a duration) attaches to the main clause without changing its internal order. The word “opens” is an extra distractor that does not belong in the answer.",
+      points: 1
+    },
+    {
+      id: 'w9-bas-6',
+      type: 'build_a_sentence',
+      prompt: 'Make an appropriate sentence.',
+      context: 'A student is checking in at the campus health center.',
+      speakerName: 'Nurse',
+      speakerImage: 'female-6.webp',
+      speakerLine: 'Are you here for the booster shot today?',
+      respondentName: 'Devyn',
+      respondentImage: 'male-6.webp',
+      answerPrefix: 'I was',
+      answerSuffix: '.',
+      numBlanks: 6,
+      wordChunks: ['today', 'when', 'be', 'I\'ll', 'finished', 'wondering', 'wondered'],
+      correctOrder: ['wondering', 'when', 'I\'ll', 'be', 'finished', 'today'],
+      extraWord: 'wondered',
+      correctSentence: "I was wondering when I\'ll be finished today.",
+      grammarPattern: 'embedded_when_question',
+      explanation: "The correct sentence is “I was wondering when I'll be finished today.” This is an embedded (indirect) question, so after the question word you keep statement word order (subject then verb), not question inversion. The word “wondered” is an extra distractor that does not belong in the answer.",
+      points: 1
+    },
+    {
+      id: 'w9-bas-7',
+      type: 'build_a_sentence',
+      prompt: 'Make an appropriate sentence.',
+      context: 'Two students are picking a hiking trail.',
+      speakerName: 'Iris',
+      speakerImage: 'female-1.webp',
+      speakerLine: 'Are you up for the longer route this time?',
+      respondentName: 'Manny',
+      respondentImage: 'male-2.webp',
+      answerPrefix: 'I\'ve',
+      answerSuffix: '.',
+      numBlanks: 6,
+      wordChunks: ['lake', 'loop', 'lakes', 'the', 'never', 'done', 'before'],
+      correctOrder: ['never', 'done', 'the', 'lake', 'loop', 'before'],
+      extraWord: 'lakes',
+      correctSentence: "I\'ve never done the lake loop before.",
+      grammarPattern: 'present_perfect_negative',
+      explanation: "The correct sentence is “I've never done the lake loop before.” Present perfect uses have or has plus the past participle to connect a past action to the present. The word “lakes” is an extra distractor that does not belong in the answer.",
+      points: 1
+    },
+    {
+      id: 'w9-bas-8',
+      type: 'build_a_sentence',
+      prompt: 'Make an appropriate sentence.',
+      context: 'A student is calling the dean’s office.',
+      speakerName: 'Dean’s Assistant',
+      speakerImage: 'female-3.webp',
+      speakerLine: 'May I ask what your call is about?',
+      respondentName: 'Tobias',
+      respondentImage: 'male-1.webp',
+      answerPrefix: 'I\'m calling about',
+      answerSuffix: '.',
+      numBlanks: 6,
+      wordChunks: ['held', 'be', 'fall', 'will', 'orientations', 'when', 'orientation'],
+      correctOrder: ['when', 'fall', 'orientation', 'will', 'be', 'held'],
+      // A campus can run several orientation sessions, so the plural agrees with
+      // "will be held" just as well and is accepted.
+      acceptedOrders: [
+        ['when', 'fall', 'orientations', 'will', 'be', 'held']
+      ],
+      extraWord: 'orientations',
+      correctSentence: "I\'m calling about when fall orientation will be held.",
+      grammarPattern: 'embedded_when_passive',
+      explanation: "The correct sentence is “I'm calling about when fall orientation will be held.” This is an embedded (indirect) question, so after the question word you keep statement word order (subject then verb), not question inversion. The word “orientations” is an extra distractor that does not belong in the answer. The plural “orientations” is accepted too, since it agrees with “will be held” and a campus may run several sessions.",
+      points: 1
+    },
+    {
+      id: 'w9-bas-9',
+      type: 'build_a_sentence',
+      prompt: 'Make an appropriate sentence.',
+      context: 'A student is talking to a study abroad coordinator.',
+      speakerName: 'Coordinator Rae',
+      speakerImage: 'male-4.webp',
+      speakerLine: 'Have you completed all of the visa documents?',
+      respondentName: 'Beatrix',
+      respondentImage: 'female-2.webp',
+      answerPrefix: 'I still',
+      answerSuffix: '.',
+      numBlanks: 7,
+      wordChunks: ['before', 'I', 'submit', 'more', 'needed', 'need', 'signature', 'one'],
+      correctOrder: ['need', 'one', 'more', 'signature', 'before', 'I', 'submit'],
+      extraWord: 'needed',
+      correctSentence: "I still need one more signature before I submit.",
+      grammarPattern: 'present_simple_with_quantifier',
+      explanation: "The correct sentence is “I still need one more signature before I submit.” The quantifier (some, many, a few, most) comes right before the noun it measures. The word “needed” is an extra distractor that does not belong in the answer.",
+      points: 1
+    },
+    {
+      id: 'w9-bas-10',
+      type: 'build_a_sentence',
+      prompt: 'Make an appropriate sentence.',
+      context: 'Two friends are looking at internship listings.',
+      speakerName: 'Soraya',
+      speakerImage: 'female-5.webp',
+      speakerLine: 'Have you found anything that matches your interests?',
+      respondentName: 'Quentin',
+      respondentImage: 'male-5.webp',
+      answerPrefix: 'One role',
+      answerSuffix: '.',
+      numBlanks: 7,
+      wordChunks: ['and', 'planning', 'focuses', 'city', 'environmental', 'policy', 'on', 'focus'],
+      correctOrder: ['focuses', 'on', 'city', 'planning', 'and', 'environmental', 'policy'],
+      acceptedOrders: [
+        ['focuses', 'on', 'environmental', 'policy', 'and', 'city', 'planning']
+      ],
+      extraWord: 'focus',
+      correctSentence: "One role focuses on city planning and environmental policy.",
+      grammarPattern: 'present_simple_with_phrasal_object',
+      explanation: "The correct sentence is “One role focuses on city planning and environmental policy.” Keep the phrasal verb together (verb plus its particle) in the correct place. “Environmental policy and city planning” is accepted too: the two fields joined by “and” are of equal weight, so nothing in the sentence fixes their order. The word “focus” is an extra distractor that does not belong in the answer.",
+      points: 1
+    }
+  ],
+
+  writeAnEmail: {
+    id: 'w9-email-1',
+    type: 'write_email',
+    directions: 'You have seven minutes to read the situation and write your email. Aim for about 100 to 150 words. Be sure to address every point in the prompt.',
+    situation: 'You volunteered to host a campus visit for a group of high school seniors next Friday. The activities office said you would receive an information packet, schedule, and lunch tickets two days before the visit. It is now twenty-four hours before the event and nothing has arrived in your mailbox or inbox.',
+    taskInstructions: 'Write an email to the activities office. In your email, do each of the following:',
+    requiredPoints: [
+      'Confirm that you are still hosting the visit and the time it begins.',
+      'Explain that you have not received the materials you were promised.',
+      'Ask for the packet, schedule, and lunch tickets to be sent or held for pickup as soon as possible.'
+    ],
+    recipient: 'activities@state.edu',
+    subject: 'Materials for tomorrow\u2019s campus visit',
+    writeTime: 420,
+    targetWords: { min: 100, max: 150 },
+    scoringRubric: {
+      5: 'Fully addresses all three prompt points with a clear purpose, appropriate greeting and closing, and a consistently polite, respectful tone. Demonstrates sentence variety, accurate grammar, and precise, well-chosen vocabulary throughout.',
+      4: 'Addresses all three points adequately with a generally appropriate tone. Minor grammar or word-choice issues do not impede understanding. Organization is logical and greeting/closing are present.',
+      3: 'Addresses most points but one may be vague or underdeveloped. Tone is mostly suitable; noticeable grammar or vocabulary problems occur but the overall message remains understandable.',
+      2: 'Partially addresses the prompt. Notable problems with completeness, register, or grammar. Missing greeting or closing, or one point omitted.',
+      1: 'Minimally addresses the situation. Serious language errors make portions of the message hard to understand, or two or more required points are missing.',
+      0: 'Off-topic, blank, copied verbatim from the prompt, or written in a language other than English.'
+    }
+  },
+
+  academicDiscussion: {
+    id: 'w9-disc-1',
+    type: 'academic_discussion',
+    topicIntro: 'Your professor is teaching a class on educational psychology. Write a post responding to the professor\u2019s question.',
+    directions: 'In your response, you should express and support your opinion and make a contribution to the discussion in your own words. An effective response will contain at least 100 words.',
+    professorPrompt: {
+      name: 'Professor Iverson',
+      image: 'male-1.webp',
+      text: 'This week we are discussing standardized testing in college admissions. Some universities have made tests like the SAT or ACT optional, arguing that grades and personal essays predict success better and that test prep favors wealthy students. Others say standardized tests offer a fair, comparable measure across very different high schools. Should universities require standardized test scores in admissions, or continue moving toward test-optional policies? Defend your view.'
+    },
+    studentResponses: [
+      {
+        name: 'Mira',
+        image: 'female-3.webp',
+        text: 'I support test-optional policies. Studies from MIT and the University of California found that GPA and rigorous coursework predict college success more reliably than test scores. Standardized testing also costs hundreds of dollars and rewards expensive prep classes, which puts low-income students at a disadvantage from the start. Removing the requirement opens the door for talented students whose schools never had strong test prep.'
+      },
+      {
+        name: 'Hassan',
+        image: 'male-2.webp',
+        text: 'I think standardized testing should remain required. High school grading varies wildly, and an A in one school can mean very different things across districts. A common test gives admissions officers a baseline they can compare. Free official prep materials from Khan Academy and the test makers have made coaching less of an issue, and need-based fee waivers cover most low-income students.'
+      }
+    ],
+    writeTime: 600,
+    targetWords: { min: 100 },
+    scoringRubric: {
+      5: 'A fully successful response. A clear, well-elaborated contribution with a strong opinion that engages meaningfully with the discussion. Well-organized and coherent, with varied sentence structure, accurate grammar, and precise vocabulary.',
+      4: 'A generally successful response. Relevant contribution with an opinion supported by reasons or examples. Adequate development and organization. Occasional minor language errors do not obscure meaning.',
+      3: 'A partially successful response. Contribution is mostly on topic but may lack depth or specific examples. Some organizational issues and noticeable grammar or vocabulary errors, but meaning is generally clear.',
+      2: 'A mostly unsuccessful response. Limited relevance or development, weak organization, and frequent errors that sometimes obscure meaning.',
+      1: 'An unsuccessful response. Largely irrelevant, undeveloped, or incoherent, with severe and persistent language errors.',
+      0: 'Blank, off-topic, not in English, or copied from the prompt.'
+    }
+  }
+};
+
+window.WRITING_TEST_9 = window.WRITING_SECTION_9;
