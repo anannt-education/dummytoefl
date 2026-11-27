@@ -28,7 +28,7 @@ window.READING_SECTION_1 = {
       type: 'complete_the_words',
       paragraph: 'Tide pools are remar____ small ecosystems found along rocky shore____. When the ocean retr____ at low tide, these shallow bas____ trap seawater and many marine crea____ inside. Sea anem____, hermit crabs, and tiny fish must end____ sudden shifts in temperature and sali____ every few hours. Scien____ study these communities to under____ how organisms cope with dramatic environmental variations.',
       words: [
-        { id: 'ctw-2-w1', position: 0, displayText: 'remar', answer: 'kable', fullWord: 'remarkable' },
+        { id: 'ctw-2-w1', position: 0, displayText: 'remar', answer: 'kably', fullWord: 'remarkably' },
         { id: 'ctw-2-w2', position: 1, displayText: 'shore', answer: 'lines', fullWord: 'shorelines' },
         { id: 'ctw-2-w3', position: 2, displayText: 'retr', answer: 'eats', fullWord: 'retreats' },
         { id: 'ctw-2-w4', position: 3, displayText: 'bas', answer: 'ins', fullWord: 'basins' },
